@@ -1,7 +1,7 @@
 export default function MenuItem({ children }) {
   return (
     <li>
-      <button>{children}</button>
+      <button className="menu__btn">{children}</button>
     </li>
   );
 }

@@ -1,0 +1,11 @@
+/* Have attempted to implement BEM naming convention throughout this project */
+
+.menu {
+  display: flex;
+  list-style-type: none;
+}
+
+.menu__btn {
+  width: 10vw;
+  height: 5vh;
+}
