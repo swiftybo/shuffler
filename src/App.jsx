@@ -1,8 +1,7 @@
-function App() {
+import Menu from "./components/Menu.jsx";
 
-  return (
-    
-  )
+function App() {
+  return <Menu />;
 }
 
-export default App
+export default App;
