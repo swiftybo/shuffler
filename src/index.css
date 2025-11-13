@@ -1,5 +1,16 @@
 /* Have attempted to implement BEM naming convention throughout this project */
 
+.header {
+  width: 100%;
+  background-color: rgb(249, 199, 112);
+  display: flex;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+}
+
+.header__section {
+  display: flex;
+}
+
 .menu {
   display: flex;
   list-style-type: none;
