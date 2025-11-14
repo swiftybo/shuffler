@@ -50,6 +50,29 @@ body {
   padding-right: 5rem;
 }
 
+.content {
+  background-color: rgb(245, 245, 245);
+}
+
+.intro {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.josefin-sans {
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.intro__para {
+  font-size: medium;
+}
+
 .menu {
   list-style-type: none;
   display: flex;
