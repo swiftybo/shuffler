@@ -51,8 +51,11 @@ body {
 }
 
 .menu {
-  display: flex;
   list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4rem;
 }
 
 .menu__btn {

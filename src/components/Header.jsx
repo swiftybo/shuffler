@@ -11,7 +11,7 @@ export default function Header() {
         />
         <h1 className="header__title oswald">shuffler</h1>
       </section>
-      <menu className="header__section section-right">
+      <menu className="header__section section-right oswald">
         <li>
           <a>Home</a>
         </li>
