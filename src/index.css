@@ -1,5 +1,55 @@
 /* Have attempted to implement BEM naming convention throughout this project */
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.header {
+  width: 100%;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 4rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 8px;
+}
+
+.header__title {
+  text-transform: uppercase;
+}
+
+.oswald {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.header__section {
+  display: flex;
+  align-items: center;
+}
+
+.section-left {
+  gap: 1rem;
+}
+
+.section-right {
+  list-style-type: none;
+  font-size: 1.3rem;
+  gap: 2rem;
+  padding-right: 5rem;
+}
+
 .menu {
   display: flex;
   list-style-type: none;
