@@ -1,7 +1,12 @@
+import { useContext } from "react";
+import { MenuContext } from "../store/menu-context";
+
 export default function MenuItem({ children }) {
+  const menuCtx = useContext(MenuContext);
+
   return (
-    <li>
-      <button className="menu__btn">{children}</button>
-    </li>
+    <>
+      <button className="menu__btn">{children}</button>;
+    </>
   );
 }
