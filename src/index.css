@@ -83,10 +83,12 @@ body {
 
 .menuItem {
   margin: 1rem;
+  padding: 1rem;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 1rem;
 }
 
-.menuItem__btn {
-  width: 12rem;
-  height: 12rem;
-  border-radius: 1rem;
+.menuItem__description {
+  font-size: 0.9rem;
 }
