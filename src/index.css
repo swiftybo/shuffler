@@ -82,9 +82,11 @@ body {
 }
 
 .menuItem {
+  margin: 1rem;
 }
 
-.menu__btn {
-  width: 10vw;
-  height: 5vh;
+.menuItem__btn {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 1rem;
 }
