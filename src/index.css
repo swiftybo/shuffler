@@ -78,7 +78,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 4rem;
+  margin: 2rem;
 }
 
 .menuItem {
@@ -87,6 +87,12 @@ body {
   width: 15rem;
   height: 15rem;
   border-radius: 1rem;
+  border: 0.5px solid grey;
+}
+
+.menuItem__logo {
+  width: 4rem;
+  height: 4rem;
 }
 
 .menuItem__description {
