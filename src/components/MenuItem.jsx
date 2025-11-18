@@ -6,7 +6,8 @@ export default function MenuItem({ children }) {
 
   return (
     <>
-      <button className="menu__btn">{children}</button>;
+      <img />
+      <button className="menu__btn">{children}</button>
     </>
   );
 }
