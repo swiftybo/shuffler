@@ -3,11 +3,13 @@ import HomePage from "./pages/Home.jsx";
 import RootPage from "./pages/Root.jsx";
 import History from "./pages/History.jsx";
 import Saved from "./pages/Saved.jsx";
+import ErrorPage from "./pages/Error.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootPage />,
+    errorElement: <ErrorPage />,
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/history", element: <History /> },
