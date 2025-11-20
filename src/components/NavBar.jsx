@@ -1,4 +1,5 @@
 import shufflerLogo from "../assets/shuffler-logo.png";
+import { NavLink } from "react-router-dom";
 
 export default function NavBar() {
   return (
@@ -14,13 +15,29 @@ export default function NavBar() {
       <nav>
         <ul className="navbar__section section-right oswald">
           <li>
-            <a>Home</a>
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? "active" : undefined)}
+              end
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <a>History</a>
+            <NavLink
+              to="/history"
+              className={({ isActive }) => (isActive ? "active" : undefined)}
+            >
+              History
+            </NavLink>
           </li>
           <li>
-            <a>Saved</a>
+            <NavLink
+              to="/saved"
+              className={({ isActive }) => (isActive ? "active" : undefined)}
+            >
+              Saved
+            </NavLink>
           </li>
         </ul>
       </nav>
