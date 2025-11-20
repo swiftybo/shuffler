@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/Home.jsx";
 import RootPage from "./pages/Root.jsx";
+import History from "./pages/History.jsx";
+import Saved from "./pages/Saved.jsx";
 
 const router = createBrowserRouter([
   {
@@ -8,6 +10,8 @@ const router = createBrowserRouter([
     element: <RootPage />,
     children: [
       { path: "/", element: <HomePage /> },
+      { path: "/history", element: <History /> },
+      { path: "/saved", element: <Saved /> },
     ],
   },
 ]);
