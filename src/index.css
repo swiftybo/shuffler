@@ -9,7 +9,7 @@ body {
   margin: 0;
 }
 
-.header {
+.navbar {
   width: 100%;
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
   padding: 0.5rem 4rem;
@@ -17,13 +17,13 @@ body {
   justify-content: space-between;
 }
 
-.header__img {
+.navbar__img {
   width: 4rem;
   height: 4rem;
   border-radius: 8px;
 }
 
-.header__title {
+.navbar__title {
   text-transform: uppercase;
 }
 
@@ -34,7 +34,7 @@ body {
   font-style: normal;
 }
 
-.header__section {
+.navbar__section {
   display: flex;
   align-items: center;
 }
