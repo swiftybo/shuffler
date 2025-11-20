@@ -1,13 +1,10 @@
 import Header from "../components/Header.jsx";
-// import { MenuContext } from "../store/menu-context.jsx";
-import { Menu } from "../components/Menu.jsx";
+import Menu from "../components/Menu.jsx";
 
 export default function HomePage() {
   return (
     <>
-      <h1>This is the Home Page</h1>
       <Header />
-      {/* <MenuContext className="content"> */}
       <div className="intro josefin-sans">
         <h1>What should we do today?</h1>
         <p className="intro__para">
@@ -16,7 +13,6 @@ export default function HomePage() {
         </p>
       </div>
       <Menu />
-      {/* </MenuContext> */}
     </>
   );
 }
