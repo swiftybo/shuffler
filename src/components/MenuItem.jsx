@@ -1,13 +1,11 @@
-import { useContext } from "react";
-import { MenuContext } from "../store/menu-context";
+import { Fragment } from "react";
 
-export default function MenuItem({ children }) {
-  const menuCtx = useContext(MenuContext);
-
+export default function MenuItem({ title, logo, children, ...props }) {
   return (
-    <>
-      <img />
-      <button className="menu__btn">{children}</button>
-    </>
+    <button className="menuItem">
+      <img className="menuItem__logo" src={logo} alt="logo" />
+      <h2>{title}</h2>
+      <p className="menuItem__description josefin-sans">{children}</p>
+    </button>
   );
 }
