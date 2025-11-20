@@ -2,26 +2,28 @@ import shufflerLogo from "../assets/shuffler-logo.png";
 
 export default function NavBar() {
   return (
-    <header className="header">
-      <section className="header__section section-left">
+    <header className="navbar">
+      <section className="navbar__section section-left">
         <img
           src={shufflerLogo}
           alt="Shuffler App Logo"
-          className="header__img"
+          className="navbar__img"
         />
-        <h1 className="header__title oswald">shuffler</h1>
+        <h1 className="navbar__title oswald">shuffler</h1>
       </section>
-      <menu className="header__section section-right oswald">
-        <li>
-          <a>Home</a>
-        </li>
-        <li>
-          <a>History</a>
-        </li>
-        <li>
-          <a>Saved</a>
-        </li>
-      </menu>
+      <nav>
+        <ul className="navbar__section section-right oswald">
+          <li>
+            <a>Home</a>
+          </li>
+          <li>
+            <a>History</a>
+          </li>
+          <li>
+            <a>Saved</a>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
