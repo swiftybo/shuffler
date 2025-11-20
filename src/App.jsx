@@ -1,6 +1,5 @@
 import Menu from "./components/Menu.jsx";
 import Header from "./components/Header.jsx";
-import { Route } from "react-router-dom";
 import { useState } from "react";
 import { MenuContext } from "./store/menu-context.jsx";
 
