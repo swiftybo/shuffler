@@ -1,6 +1,6 @@
 import shufflerLogo from "../assets/shuffler-logo.png";
 
-export default function Header() {
+export default function NavBar() {
   return (
     <header className="header">
       <section className="header__section section-left">

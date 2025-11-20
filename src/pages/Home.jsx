@@ -1,10 +1,10 @@
-import Header from "../components/Header.jsx";
+import NavBar from "../components/NavBar.jsx";
 import Menu from "../components/Menu.jsx";
 
 export default function HomePage() {
   return (
     <>
-      <Header />
+      <NavBar />
       <div className="intro josefin-sans">
         <h1>What should we do today?</h1>
         <p className="intro__para">
