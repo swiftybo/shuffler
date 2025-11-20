@@ -1,11 +1,9 @@
-import { Fragment } from "react";
-
 export default function MenuItem({ title, logo, children, ...props }) {
   return (
-    <button className="menuItem">
+    <div className="menuItem">
       <img className="menuItem__logo" src={logo} alt="logo" />
-      <h2>{title}</h2>
+      <h3>{title}</h3>
       <p className="menuItem__description josefin-sans">{children}</p>
-    </button>
+    </div>
   );
 }
