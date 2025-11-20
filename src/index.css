@@ -70,7 +70,7 @@ li a.active {
 }
 
 .intro {
-  padding-top: 2rem;
+  padding: 2rem 0rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -88,12 +88,16 @@ li a.active {
   font-size: medium;
 }
 
+.subheader {
+  font-weight: 500;
+}
+
 .menu {
   list-style-type: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2rem;
+  margin: 1rem;
 }
 
 .menuItem {

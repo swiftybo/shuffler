@@ -9,8 +9,9 @@ export default function HomePage() {
           Let the Shuffler decide! Choose a category and let the shuffler pick
           the perfect option for you and your partner!
         </p>
+        <Menu />
       </div>
-      <Menu />
+      <h2 className="subheader josefin-sans">Recent Picks</h2>
     </>
   );
 }
