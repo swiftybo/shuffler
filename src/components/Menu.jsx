@@ -13,7 +13,7 @@ export default function Menu() {
         <MenuItem
           title="Films"
           logo={filmLogo}
-          categories={["Netflix", "Cinema"]}
+          buzzWords={["Netflix", "Cinema"]}
         >
           Discover your next binge-watch or movie-night pick.
         </MenuItem>
@@ -21,21 +21,21 @@ export default function Menu() {
       <MenuItem
         title="Restaurants"
         logo={restaurantLogo}
-        categories={["Cuisine", "A la carte", "Buffet"]}
+        buzzWords={["Cuisine", "Buffet"]}
       >
         Find the perfect spot to eat date night.
       </MenuItem>
       <MenuItem
         title="Activities"
         logo={activityLogo}
-        categories={["Indoor", "Outdoor", "Chill", "High-Adrenaline"]}
+        buzzWords={["Outdoor", "Chill"]}
       >
         Explore fun things to do together.
       </MenuItem>
       <MenuItem
         title="Cook Together"
         logo={cookingLogo}
-        categories={["Quick", "One-Pot", "Gourmet"]}
+        buzzWords={["One-Pot", "Gourmet"]}
       >
         Cook something delicious together.
       </MenuItem>
