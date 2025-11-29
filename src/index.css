@@ -11,6 +11,7 @@ body {
 
 main {
   text-align: center;
+  background-color: rgb(246, 246, 246);
 }
 
 .navbar {
@@ -65,10 +66,6 @@ li a.active {
   padding-right: 5rem;
 }
 
-.content {
-  background-color: rgb(245, 245, 245);
-}
-
 .intro {
   padding: 2rem 0rem;
   display: flex;
@@ -102,11 +99,12 @@ li a.active {
 
 .menuItem {
   margin: 1rem;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   width: 15rem;
   height: 15rem;
   border-radius: 1rem;
-  border: 0.5px solid grey;
+  background-color: white;
+  box-shadow: 4px 4px 2px -2px rgba(0.2, 0.2, 0.2, 0.2);
 }
 
 .menuItem__logo {
@@ -116,4 +114,19 @@ li a.active {
 
 .menuItem__description {
   font-size: 0.9rem;
+  margin: 0.75rem 0rem;
+}
+
+.menuItem__buzzWords {
+  display: flex;
+  justify-content: center;
+}
+
+.menuCategory {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  font-size: 0.7rem;
+  color: rgb(49, 48, 48);
+  background-color: lightgrey;
+  border-radius: 1rem;
 }

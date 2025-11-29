@@ -1,11 +1,16 @@
-import { Fragment } from "react";
+import MenuCategory from "./MenuCategory.jsx";
 
-export default function MenuItem({ title, logo, children, ...props }) {
+export default function MenuItem({ title, logo, buzzWords, children }) {
   return (
-    <button className="menuItem">
+    <div className="menuItem">
       <img className="menuItem__logo" src={logo} alt="logo" />
-      <h2>{title}</h2>
+      <h3>{title}</h3>
       <p className="menuItem__description josefin-sans">{children}</p>
-    </button>
+      <section className="menuItem__buzzWords">
+        {buzzWords.map((buzzWord) => (
+          <MenuCategory buzzWord={buzzWord} />
+        ))}
+      </section>
+    </div>
   );
 }
