@@ -4,6 +4,7 @@ import RootPage from "./pages/Root.jsx";
 import History from "./pages/History.jsx";
 import Saved from "./pages/Saved.jsx";
 import ErrorPage from "./pages/Error.jsx";
+import FilmPage from "./pages/FilmPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -11,9 +12,13 @@ const router = createBrowserRouter([
     element: <RootPage />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "/", element: <HomePage /> },
-      { path: "/history", element: <History /> },
-      { path: "/saved", element: <Saved /> },
+      {
+        path: "",
+        element: <HomePage />,
+        children: [{ path: "films", element: <FilmPage /> }],
+      },
+      { path: "history", element: <History /> },
+      { path: "saved", element: <Saved /> },
     ],
   },
 ]);
