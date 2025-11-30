@@ -9,7 +9,7 @@ import cookingLogo from "../assets/cooking-logo.png";
 export default function Menu() {
   return (
     <section className="menu">
-      <Link to="/history">
+      <Link to="/films">
         <MenuItem
           title="Films"
           logo={filmLogo}
