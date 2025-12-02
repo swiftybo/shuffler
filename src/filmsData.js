@@ -18,3 +18,5 @@ const filmList = [
     { title: "Your Name.", year: 2016, status: "not watched" },
     { title: "The Witches of Eastwick", year: 1987, status: "not watched" },
 ];
+
+export {filmList}
