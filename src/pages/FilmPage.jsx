@@ -1,4 +1,4 @@
-import AvailableFilms from "../components/AvailableFilms";
+import AvailableFilms from "../components/filmComponents/AvailableFilms";
 
 export default function FilmPage() {
   return (

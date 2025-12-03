@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
 import MenuItem from "./MenuItem.jsx";
-import filmLogo from "../assets/film-logo.png";
-import restaurantLogo from "../assets/restaurant-logo.png";
-import activityLogo from "../assets/activity-logo.png";
-import cookingLogo from "../assets/cooking-logo.png";
+import filmLogo from "../../assets/film-logo.png";
+import restaurantLogo from "../../assets/restaurant-logo.png";
+import activityLogo from "../../assets/activity-logo.png";
+import cookingLogo from "../../assets/cooking-logo.png";
 
 export default function Menu() {
   return (

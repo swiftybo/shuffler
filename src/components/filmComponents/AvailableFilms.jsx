@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { fetchFilms } from "../httpRequests.js";
-import { filmList } from "../filmsData.js"
+import { fetchFilms } from "../../httpRequests.js";
+import { filmList } from "../../filmsData.js"
 import classes from "./AvailableFilms.module.css"
 
 export default function AvailableFilms() {

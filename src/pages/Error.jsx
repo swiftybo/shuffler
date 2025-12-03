@@ -1,4 +1,4 @@
-import NavBar from "../components/NavBar.jsx";
+import NavBar from "../components/homeComponents/NavBar.jsx";
 
 export default function ErrorPage() {
   return (
