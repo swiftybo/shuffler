@@ -32,7 +32,7 @@ export default function AvailableFilms() {
   return (
     <>
       {isFetching && <p>Fetching films</p>}
-      {!isFetching && <div>
+      {!isFetching && <div className={classes.filmContent}>
         {availableFilms.map(film => (
           <FilmItem key={film.Title} selectedFilm={film} />
         ))

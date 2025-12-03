@@ -1,8 +1,12 @@
 .filmItem {
+    border: 1px solid grey;
+    width: 13rem;
+    border-radius: 1rem;
 }
 
 .filmItem__img {
     height: 12rem;
+    margin-top: 0.5rem;
 }
 
 .filmItem__title {
