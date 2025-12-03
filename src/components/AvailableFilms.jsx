@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { fetchFilm } from "../httpRequests.js";
+import { fetchFilms } from "../httpRequests.js";
+import { filmList } from "../filmsData.js"
 import classes from "./AvailableFilms.module.css"
 
 export default function AvailableFilms() {
@@ -14,7 +15,7 @@ export default function AvailableFilms() {
     setIsFetching(true);
     async function getAllFilms() {
       try {
-        const films = await fetchFilm()
+        const films = await fetchFilms(filmList)
         setAvailableFilms(films)
         setIsFetching(false);
       } catch(error) {
@@ -25,12 +26,12 @@ export default function AvailableFilms() {
       }
     }
     getAllFilms()
-  }, []);
+  }, [filmList]);
 
   return (
     <>
       {isFetching && <p>Fetching films</p>}
-      {availableFilms && (<ul>
+      {!isFetching && (<ul>
         {availableFilms.map(film => (
           <li key={film.Title}>
             {film.Title}
