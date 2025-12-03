@@ -131,3 +131,10 @@ li a.active {
   background-color: lightgrey;
   border-radius: 1rem;
 }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

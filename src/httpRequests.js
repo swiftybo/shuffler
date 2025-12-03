@@ -1,3 +1,5 @@
+import AvailableFilms from "./components/filmComponents/AvailableFilms";
+
 export async function fetchFilms(movieList) {
     const availableMovies = await Promise.all(
         movieList.map(async movie => {
@@ -10,6 +12,7 @@ export async function fetchFilms(movieList) {
             return response.json();
         })
     )
+    console.log(availableMovies)
     return availableMovies 
   
 }
