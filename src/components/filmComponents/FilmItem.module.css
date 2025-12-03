@@ -1,0 +1,21 @@
+.filmItem {
+}
+
+.filmItem__img {
+    height: 12rem;
+}
+
+.filmItem__title {
+    margin: 0.5rem;
+}
+
+.filmItem__genre {
+    color: rgb(252, 49, 49);
+    background-color: rgb(255, 163, 163);
+    
+}
+
+.filmItem__ageRating {
+    color: rgb(66, 66, 66);
+    background-color: grey;
+}
