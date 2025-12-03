@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchFilm } from "../httpRequests.js";
+import classes from "./AvailableFilms.module.css"
 
 export default function AvailableFilms() {
   // 1. Loading state: tell user that the app is currently fetching data
@@ -26,5 +27,17 @@ export default function AvailableFilms() {
     getAllFilms()
   }, []);
 
-  return <>{isFetching && <p>Fetching films</p>}</>;
+  return (
+    <>
+      {isFetching && <p>Fetching films</p>}
+      {availableFilms && (<ul>
+        {availableFilms.map(film => (
+          <li key={film.Title}>
+            {film.Title}
+          </li>
+        ))
+      }</ul>)}
+      {error && <p className={classes.error}>Error: {error.message}</p>}
+    </>
+  )
 }
