@@ -1,4 +1,4 @@
-import Menu from "../components/Menu.jsx";
+import Menu from "../components/homeComponents/Menu.jsx";
 
 export default function HomePage() {
   return (
