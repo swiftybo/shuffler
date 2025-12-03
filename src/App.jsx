@@ -5,6 +5,7 @@ import History from "./pages/History.jsx";
 import Saved from "./pages/Saved.jsx";
 import ErrorPage from "./pages/Error.jsx";
 import FilmPage from "./pages/FilmPage.jsx";
+import { FilmContextProvider } from "./store/film-context.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
       },
       { path: "history", element: <History /> },
       { path: "saved", element: <Saved /> },
-      { path: "films", element: <FilmPage /> },
+      { path: "films", element: <FilmContextProvider><FilmPage /></FilmContextProvider> },
     ],
   },
 ]);
