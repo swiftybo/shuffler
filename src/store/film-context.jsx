@@ -1,10 +1,16 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 const FilmContext = createContext()
 
 export function FilmContextProvider({children}) {
+    const [filmsVisible, setFilmsVisible] = useState(false)
+
+    function handleFilmVisibility() {
+        setFilmsVisible(prevState => !prevState)
+    }
+
     return (
-        <FilmContext.Provider>
+        <FilmContext.Provider value={{filmsVisible, handleFilmVisibility}}>
             {children}
         </FilmContext.Provider>
     )

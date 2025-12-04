@@ -3,8 +3,11 @@ import { fetchFilms } from "../../httpRequests.js";
 import { filmList } from "../../filmsData.js"
 import classes from "./AvailableFilms.module.css"
 import FilmItem from "./FilmItem.jsx";
+import { useFilmContext } from "../../store/film-context.jsx";
 
 export default function AvailableFilms() {
+  const {filmsVisible} = useFilmContext()
+
   // 1. Loading state: tell user that the app is currently fetching data
   const [isFetching, setIsFetching] = useState(false);
   // 2. Data state: storing the fetched data
@@ -32,7 +35,7 @@ export default function AvailableFilms() {
   return (
     <>
       {isFetching && <p>Fetching films</p>}
-      {!isFetching && <div className={classes.filmContent}>
+      {!isFetching && filmsVisible && <div className={classes.filmContent}>
         {availableFilms.map(film => (
           <FilmItem key={film.Title} selectedFilm={film} />
         ))
