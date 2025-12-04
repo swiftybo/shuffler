@@ -4,6 +4,7 @@ const FilmContext = createContext()
 
 export function FilmContextProvider({children}) {
     const [filmsVisible, setFilmsVisible] = useState(false)
+    const [wildcardVisible, setWildcardVisible] = useState(false)
 
     function handleFilmVisibility() {
         setFilmsVisible(prevState => !prevState)
