@@ -1,4 +1,4 @@
-import AvailableFilms from "./components/filmComponents/AvailableFilms";
+import FilmsViewerSection from "./components/filmComponents/FilmsViewerSection";
 
 export async function fetchFilms(movieList) {
     const availableMovies = await Promise.all(

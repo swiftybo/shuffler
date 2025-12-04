@@ -1,15 +1,18 @@
 import ActionButtons from "../components/filmComponents/ActionButtons";
-import AvailableFilms from "../components/filmComponents/AvailableFilms";
-import CategoryHeader from "../components/generalComponents/categoryHeader";
+import FilmsViewerSection from "../components/filmComponents/FilmsViewerSection";
+import CategoryHeader from "../components/generalComponents/CategoryHeader";
+import { useFilmContext } from "../store/film-context";
 
 export default function FilmPage() {
+  const {filmsVisible} = useFilmContext()
+
   return (
     <main className="content">
       <CategoryHeader />
       <p>3 watched</p>
       <p>3 to watch</p>
       <ActionButtons />
-      <AvailableFilms />
+      {filmsVisible && <FilmsViewerSection />}
     </main>
   );
 }
