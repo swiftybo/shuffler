@@ -5,7 +5,7 @@ import classes from "./ActionButtons.module.css"
 import { useFilmContext } from "../../store/film-context"
 
 export default function ActionButtons() {
-    const {handleFilmVisibility} = useFilmContext()
+    const {handleFilmVisibility, handleWildcardVisibility} = useFilmContext()
     
     return (
         <section >
@@ -13,7 +13,7 @@ export default function ActionButtons() {
                 <img className={classes.actionBtn__icon} src={randomizerIcon} />
                 Randomize
             </button>
-            <button className={classes.actionBtn}>
+            <button className={classes.actionBtn} onClick={handleWildcardVisibility}>
                 <img className={classes.actionBtn__icon} src={wildcardIcon} />
                 Wildcard
             </button>
