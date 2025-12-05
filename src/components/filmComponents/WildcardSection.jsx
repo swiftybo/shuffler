@@ -4,10 +4,11 @@ import { fetchFilmID } from "../../httpRequests.js"
 export default function WildcardSection() {
     const [userMovieTitle, setUserMovieTitle] = useState("")
     const [userMovieYear, setUserMovieYear] = useState("")
+    const [identifiedMovies, setIdentifiedMovies] = useState([])
 
     async function findUserMovie() {
-        const movies = await fetchFilmID(userMovieTitle, userMovieYear)
-        console.log(movies)
+        const {results} = await fetchFilmID(userMovieTitle, userMovieYear)
+        setIdentifiedMovies([...results])
     }
 
     return (
