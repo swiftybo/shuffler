@@ -1,14 +1,17 @@
 import { useState } from "react"
 import { fetchFilmID } from "../../httpRequests.js"
+import FilmItem from "./FilmItem.jsx"
 
 export default function WildcardSection() {
     const [userMovieTitle, setUserMovieTitle] = useState("")
     const [userMovieYear, setUserMovieYear] = useState("")
     const [identifiedMovies, setIdentifiedMovies] = useState([])
+    const [movieIndex, setMovieIndex] = useState(0)
 
     async function findUserMovie() {
         const {results} = await fetchFilmID(userMovieTitle, userMovieYear)
         setIdentifiedMovies([...results])
+        console.log(results)
     }
 
     return (
@@ -21,6 +24,13 @@ export default function WildcardSection() {
                 <input value={userMovieYear} onChange={(e) => setUserMovieYear(e.target.value)} />
                 <button onClick={findUserMovie}>Go!</button>
             </div>
+            <section>
+                {identifiedMovies.length > 0 && 
+                    <div>
+                        <h2>{identifiedMovies[movieIndex].original_title}</h2>
+                        <img src={`https://image.tmdb.org/t/p/w185${identifiedMovies[movieIndex].poster_path}`} />
+                    </div>}
+            </section>
         </>
     )
 }
