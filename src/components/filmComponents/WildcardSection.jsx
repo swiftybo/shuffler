@@ -34,22 +34,17 @@ export default function WildcardSection() {
             setIdentifiedMovies([...results])
             setIdentifiedMovieIndex(0)
             setCurrentOperation("identifying")
-            console.log(results)
+            // console.log(results)
         }
     findUserMovie()}
     ,[formState.userMovieTitle, formState.userMovieYear])
 
-    async function findRecommendedMovie(confirmedMovieID) {
-        const {results} = await fetchRecommendedFilm(confirmedMovieID)
+    async function confirmUserMovie() {
+        const {results} = await fetchRecommendedFilm(identifiedMovies[identifiedMovieIndex].id)
         setSuggestedMovies([...results])
         setSuggestedMovieIndex(0) 
         setCurrentOperation("suggesting")
         console.log(results)
-    }
-
-    function confirmUserMovie() {
-        // setConfirmedMovieID(identifiedMovies[identifiedMovieIndex].id)
-        findRecommendedMovie(identifiedMovies[identifiedMovieIndex].id)
     }
 
     return (
