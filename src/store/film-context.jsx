@@ -10,8 +10,12 @@ export function FilmContextProvider({children}) {
         setFilmsVisible(prevState => !prevState)
     }
 
+    function handleWildcardVisibility() {
+        setWildcardVisible(prevState => !prevState)
+    }
+
     return (
-        <FilmContext.Provider value={{filmsVisible, handleFilmVisibility}}>
+        <FilmContext.Provider value={{filmsVisible, wildcardVisible, handleFilmVisibility, handleWildcardVisibility}}>
             {children}
         </FilmContext.Provider>
     )

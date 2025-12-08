@@ -1,0 +1,20 @@
+.wildcardMovie {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30rem;
+    border: 1px solid black
+}
+
+.wildcardMovie__summary {
+    display: flex
+}
+
+.wildcardMovie__details {
+    padding: 0rem 2rem;
+}
+
+.wildcardMovie__buttons {
+    margin: 1rem;
+}
