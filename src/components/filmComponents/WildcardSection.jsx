@@ -10,10 +10,17 @@ export default function WildcardSection() {
     }
 
     const [formState, formAction] = useActionState(updateUserMovie, initialState)
+
+    // state to record if either identifying movies or suggesting movies 
+    const [currentOperation, setCurrentOperation] = useState("")
+
+    // state to save the current identified movies based on the user's inputs
     const [identifiedMovies, setIdentifiedMovies] = useState([])
+    const [identifiedMovieIndex, setIdentifiedMovieIndex] = useState(0)
+
+    // state to save the current suggested movies based on the user's inputs
     const [suggestedMovies, setSuggestedMovies] = useState([])
-    const [movieIndex, setMovieIndex] = useState(0)
-    const [confirmedMovieID, setConfirmedMovieID] = useState()
+    const [suggestedMovieIndex, setSuggestedMovieIndex] = useState(0)
 
     useEffect(() => {
         // Conditional check added here
@@ -25,22 +32,24 @@ export default function WildcardSection() {
         async function findUserMovie() {
             const {results} = await fetchFilmID(formState.userMovieTitle, formState.userMovieYear)
             setIdentifiedMovies([...results])
-            setMovieIndex(0)
+            setIdentifiedMovieIndex(0)
+            setCurrentOperation("identifying")
             console.log(results)
         }
     findUserMovie()}
     ,[formState.userMovieTitle, formState.userMovieYear])
 
-    async function findRecommendedMovie() {
+    async function findRecommendedMovie(confirmedMovieID) {
         const {results} = await fetchRecommendedFilm(confirmedMovieID)
         setSuggestedMovies([...results])
-        setMovieIndex(0)
+        setSuggestedMovieIndex(0) 
+        setCurrentOperation("suggesting")
         console.log(results)
     }
 
     function confirmUserMovie() {
-        setConfirmedMovieID(identifiedMovies[movieIndex].id)
-        findRecommendedMovie()
+        // setConfirmedMovieID(identifiedMovies[identifiedMovieIndex].id)
+        findRecommendedMovie(identifiedMovies[identifiedMovieIndex].id)
     }
 
     return (
@@ -53,20 +62,37 @@ export default function WildcardSection() {
                 <input name="movieYear" type="text" defaultValue={formState.userMovieYear}/>
                 <button>Go!</button>
             </form>
-            {identifiedMovies.length > 0 && <section className={classes.wildcardMovie}>
-                <p>Multiple movies with the name "{formState.userMovieTitle}" have been found. Please select the correct one so we can generate the best recommendation for you!</p>
+
+            {currentOperation === "identifying" && <section className={classes.wildcardMovie}>
+                {identifiedMovies.length > 1 && <p>Multiple movies with the name "{formState.userMovieTitle}" have been found. Please select the correct one so we can generate the best recommendation for you!</p>}
                 <div className={classes.wildcardMovie__summary}>
-                    <img src={`https://image.tmdb.org/t/p/w185${identifiedMovies[movieIndex].poster_path}`} />
+                    <img src={`https://image.tmdb.org/t/p/w185${identifiedMovies[identifiedMovieIndex].poster_path}`} />
                     <div className={classes.wildcardMovie__details}>
-                        <h2>{identifiedMovies[movieIndex].original_title}</h2>
-                        <p>Summary: {identifiedMovies[movieIndex].overview}</p>
-                        <p>Release Date: {identifiedMovies[movieIndex].release_date}</p>
+                        <h2>{identifiedMovies[identifiedMovieIndex].original_title}</h2>
+                        <p>Summary: {identifiedMovies[identifiedMovieIndex].overview}</p>
+                        <p>Release Date: {identifiedMovies[identifiedMovieIndex].release_date}</p>
                     </div>
                 </div>
                 <div className={classes.wildcardMovie__buttons}>
-                    {movieIndex > 0 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setMovieIndex(prevValue => prevValue - 1)}>Previous Movie</button>}
+                    {identifiedMovieIndex > 0 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue - 1)}>Previous Movie</button>}
                     <button className={classes.wildcardMovie__confirmBtn} onClick={confirmUserMovie}>Confirm</button>
-                    {movieIndex < identifiedMovies.length -1 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setMovieIndex(prevValue => prevValue + 1)}>Next Movie</button>}
+                    {identifiedMovieIndex < identifiedMovies.length -1 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue + 1)}>Next Movie</button>}
+                </div>
+            </section>}
+
+            {currentOperation === "suggesting" && <section className={classes.wildcardMovie}>
+                <div className={classes.wildcardMovie__summary}>
+                    <img src={`https://image.tmdb.org/t/p/w185${suggestedMovies[suggestedMovieIndex].poster_path}`} />
+                    <div className={classes.wildcardMovie__details}>
+                        <h2>{suggestedMovies[suggestedMovieIndex].original_title}</h2>
+                        <p>Summary: {suggestedMovies[suggestedMovieIndex].overview}</p>
+                        <p>Release Date: {suggestedMovies[suggestedMovieIndex].release_date}</p>
+                    </div>
+                </div>
+                <div className={classes.wildcardMovie__buttons}>
+                    {suggestedMovieIndex > 0 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue - 1)}>Previous Movie</button>}
+                    <button className={classes.wildcardMovie__confirmBtn} onClick={() => {console.log(`You've chosen ${suggestedMovies[suggestedMovieIndex].original_title}`)}}>Confirm</button>
+                    {suggestedMovieIndex < suggestedMovies.length -1 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue + 1)}>Next Movie</button>}
                 </div>
             </section>}
         </>
