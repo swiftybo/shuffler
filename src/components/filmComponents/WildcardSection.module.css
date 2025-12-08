@@ -1,0 +1,9 @@
+.wildcardMovie {
+    display: flex;
+    width: 30rem;
+    border: 1px solid black
+}
+
+.wildcardMovie__summary {
+    padding: 0rem 2rem;
+}
