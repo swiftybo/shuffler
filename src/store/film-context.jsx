@@ -5,6 +5,7 @@ const FilmContext = createContext()
 export function FilmContextProvider({children}) {
     const [filmsVisible, setFilmsVisible] = useState(false)
     const [wildcardVisible, setWildcardVisible] = useState(false)
+    const [randomizerVisible, setRandomizerVisible] = useState(false)
 
     function handleFilmVisibility() {
         setFilmsVisible(prevState => !prevState)
@@ -14,8 +15,12 @@ export function FilmContextProvider({children}) {
         setWildcardVisible(prevState => !prevState)
     }
 
+    function handleRandomizerVisibility() {
+        setRandomizerVisible(prevState => !prevState)
+    }
+
     return (
-        <FilmContext.Provider value={{filmsVisible, wildcardVisible, handleFilmVisibility, handleWildcardVisibility}}>
+        <FilmContext.Provider value={{filmsVisible, wildcardVisible, randomizerVisible, handleFilmVisibility, handleWildcardVisibility, handleRandomizerVisibility}}>
             {children}
         </FilmContext.Provider>
     )
