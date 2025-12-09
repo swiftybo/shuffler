@@ -3,22 +3,24 @@ import { createContext, useContext, useState } from "react";
 const FilmContext = createContext()
 
 export function FilmContextProvider({children}) {
-    const [filmsVisible, setFilmsVisible] = useState(false)
-    const [wildcardVisible, setWildcardVisible] = useState(false)
     const [randomizerVisible, setRandomizerVisible] = useState(false)
+    const [wildcardVisible, setWildcardVisible] = useState(false)
+    const [filmsVisible, setFilmsVisible] = useState(false)
 
-    function handleFilmVisibility() {
-        setFilmsVisible(prevState => !prevState)
+    function handleRandomizerVisibility() {
+        setRandomizerVisible(prevState => !prevState)
+        setWildcardVisible(false)
     }
 
     function handleWildcardVisibility() {
         setWildcardVisible(prevState => !prevState)
+        setRandomizerVisible(false)
     }
-
-    function handleRandomizerVisibility() {
-        setRandomizerVisible(prevState => !prevState)
+    
+    function handleFilmVisibility() {
+        setFilmsVisible(prevState => !prevState)
     }
-
+    
     return (
         <FilmContext.Provider value={{filmsVisible, wildcardVisible, randomizerVisible, handleFilmVisibility, handleWildcardVisibility, handleRandomizerVisibility}}>
             {children}
