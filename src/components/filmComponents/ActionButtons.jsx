@@ -5,11 +5,11 @@ import classes from "./ActionButtons.module.css"
 import { useFilmContext } from "../../store/film-context"
 
 export default function ActionButtons() {
-    const {handleFilmVisibility, handleWildcardVisibility} = useFilmContext()
+    const {handleFilmVisibility, handleWildcardVisibility, handleRandomizerVisibility} = useFilmContext()
     
     return (
         <section >
-            <button className={classes.actionBtn}>
+            <button className={classes.actionBtn} onClick={handleRandomizerVisibility}>
                 <img className={classes.actionBtn__icon} src={randomizerIcon} />
                 Randomize
             </button>

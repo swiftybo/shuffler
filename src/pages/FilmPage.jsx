@@ -1,4 +1,5 @@
 import ActionButtons from "../components/filmComponents/ActionButtons";
+import RandomizerSection from "../components/filmComponents/RandomizerSection";
 import FilmsViewerSection from "../components/filmComponents/FilmsViewerSection";
 import WildcardSection from "../components/filmComponents/WildcardSection";
 import CategoryHeader from "../components/generalComponents/CategoryHeader";
@@ -40,6 +41,7 @@ export default function FilmPage() {
       <p>3 watched</p>
       <p>3 to watch</p>
       <ActionButtons />
+      {randomizerVisible && <RandomizerSection allFilms={availableFilms}/>}
       {wildcardVisible && <WildcardSection />}
       {filmsVisible && <FilmsViewerSection fetchingStatus={isFetching} allFilms={availableFilms} error={error} />}
     </main>
