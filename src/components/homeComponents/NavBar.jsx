@@ -11,12 +11,12 @@ export default function NavBar() {
           alt="Shuffler App Logo"
           className="navbar__img"
         />
-        <h1 className="navbar__title oswald">
+        <h1 className="navbar__title josefin-sans">
           <Link to="/">shuffler</Link>
         </h1>
       </section>
       <nav>
-        <ul className="navbar__section section-right oswald">
+        <ul className="navbar__section section-right josefin-sans">
           <li>
             <NavLink
               to="/"

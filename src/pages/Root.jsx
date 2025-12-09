@@ -5,7 +5,7 @@ export default function RootPage() {
   return (
     <>
       <NavBar />
-      <main>
+      <main className="shuffler_content">
         <Outlet />
       </main>
     </>
