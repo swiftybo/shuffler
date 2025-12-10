@@ -14,7 +14,7 @@ export default function FilmPage() {
    // 1. Loading state: tell user that the app is currently fetching data
     const [isFetching, setIsFetching] = useState(false);
     // 2. Data state: storing the fetched data
-    const [availableFilms, setAvailableFilms] = useState([]);
+    const [fetchedFilms, setFetchedFilms] = useState([]);
     // 3. Error state: state to show potential errors on the UI
     const [error, setError] = useState();
   
@@ -23,7 +23,7 @@ export default function FilmPage() {
       async function getAllFilms() {
         try {
           const films = await fetchFilms(filmList)
-          setAvailableFilms(films)
+          setFetchedFilms(films)
           setIsFetching(false);
         } catch(error) {
           setError({
@@ -35,15 +35,25 @@ export default function FilmPage() {
       getAllFilms()
     }, [filmList]);
 
+    function toggleWatchStatus(targetFilm) {
+      setFetchedFilms(fetchedFilms.map(film => {
+        if (film === targetFilm) {
+          return {...film, watchStatus: !film.watchStatus}
+        } else {
+          return film
+        }
+      }))
+    }
+
   return (
     <main className="content">
-      <CategoryHeader films={availableFilms}/>
+      <CategoryHeader films={fetchedFilms}/>
       {/* <p>3 watched</p>
       <p>3 to watch</p> */}
       <ActionButtons />
-      {randomizerVisible && <RandomizerSection allFilms={availableFilms}/>}
+      {randomizerVisible && <RandomizerSection allFilms={fetchedFilms}/>}
       {wildcardVisible && <WildcardSection />}
-      {filmsVisible && <FilmsViewerSection fetchingStatus={isFetching} allFilms={availableFilms} error={error} />}
+      {filmsVisible && <FilmsViewerSection fetchingStatus={isFetching} allFilms={fetchedFilms} error={error} />}
     </main>
   );
 }

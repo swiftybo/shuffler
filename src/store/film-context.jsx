@@ -20,7 +20,7 @@ export function FilmContextProvider({children}) {
     function handleFilmVisibility() {
         setFilmsVisible(prevState => !prevState)
     }
-    
+        
     return (
         <FilmContext.Provider value={{filmsVisible, wildcardVisible, randomizerVisible, handleFilmVisibility, handleWildcardVisibility, handleRandomizerVisibility}}>
             {children}
