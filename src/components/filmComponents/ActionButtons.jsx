@@ -17,7 +17,7 @@ export default function ActionButtons() {
                 <img className={classes.actionBtn__icon} src={wildcardIcon} />
                 Wildcard
             </button>
-            <button style={{backgroundColor: "white", color: "rgba(180, 0, 0, 1)"}} className={classes.actionBtn} onClick={handleFilmVisibility}>
+            <button style={{backgroundColor: "white", color: "rgba(180, 0, 0, 1)", borderColor: "rgba(255, 186, 186, 1)"}} className={classes.actionBtn} onClick={handleFilmVisibility}>
                 <img className={classes.actionBtn__icon} src={listIcon} />
                 View List
             </button>

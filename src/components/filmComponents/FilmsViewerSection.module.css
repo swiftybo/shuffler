@@ -1,25 +1,26 @@
 .viewerSection {
     margin: 2rem 0rem;
-    border: 1px solid rgb(179, 178, 178);
+    padding: 2rem 1rem;
+    border: 1px solid rgb(218, 217, 217);
     background: white;
     border-radius: 1rem;
     width: 85%;
-    box-shadow: 0px 0px 1.5px 0px grey;
+    box-shadow: 0px 0px 1.5px 0px rgb(182, 182, 182);
 }
 
 .viewerSection__subheader {
-    margin: 1.5rem 2rem;
-    font-weight: 600;
+    margin: 0rem 1.5rem 1rem;
+    font-weight: 400;
 }
 
-.filmContent {
+.viewerSection__filmContent {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+    justify-content:center;
+    flex-wrap:wrap;
+    /* gap: 1rem; */
 }
 
-.error {
+.viewerSection__error {
     color: red;
     font-size: 1.5rem;
 }
