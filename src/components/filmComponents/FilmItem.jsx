@@ -1,8 +1,8 @@
 import classes from "./FilmItem.module.css"
 
-export default function FilmItem({selectedFilm}) {
+export default function FilmItem({selectedFilm, mxwidth="22vw"}) {
     return (
-        <div className={classes.filmItem}>
+        <div className={classes.filmItem} style={{maxWidth: `${mxwidth}`}}>
             <img className={classes.filmItem__img} src={selectedFilm.Poster} alt={`${selectedFilm.Title} poster`}></img>
             <div className={classes.filmItem__details}>
                 <h3 className={`oswald ${classes.filmItem__title}`}>{selectedFilm.Title}</h3>

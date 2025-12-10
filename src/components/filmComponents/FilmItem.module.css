@@ -1,9 +1,7 @@
 .filmItem {
     border: 1px solid rgb(204, 204, 204);
     min-width: 20rem;
-    max-width: 30%;
-    flex-grow: 1;
-    max-height: 25vh;
+    max-height: 38vh;
     border-radius: 1rem;
     display: flex;
     overflow: hidden;
@@ -23,8 +21,9 @@
 .filmItem__details {
     display: flex;
     flex-direction: column;
-    padding: 0.25rem;
+    padding: 0.25rem 1rem 0.25rem 0rem;
     overflow-y:auto;
+    width: 100%;
 }
 
 .filmItem__title {
@@ -44,7 +43,6 @@
     border-radius: 0.5rem;
     padding: 0.25rem 0.5rem;
     font-size: 0.8rem;
-    
 }
 
 .filmItem__ageRating {
@@ -64,4 +62,5 @@
 
 .filmItem__para {
     margin: 0rem 0.5rem 0rem 0rem;
+    font-size: 0.8rem;
 }

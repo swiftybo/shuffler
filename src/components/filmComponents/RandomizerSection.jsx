@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
+import classes from "./RandomizerSection.module.css"
 import FilmItem from "./FilmItem"
+import rerollIcon from "../../assets/reroll-icon.png"
 
 export default function RandomizerSection({allFilms}) {
     const [isRandomizing, setIsRandomizing] = useState(true)
@@ -23,11 +25,14 @@ export default function RandomizerSection({allFilms}) {
     }, [isRandomizing])
 
     return (
-        <>
-            <div>Randomizer Section</div>
-            {randomizedMovie && <FilmItem selectedFilm={randomizedMovie} />}
-            <button onClick={() => setIsRandomizing(true)} disabled={isRandomizing}>Re-roll!</button>
-        </>
+        <div className={classes.randomizerSection}>
+            <p className={`${classes.randomizerSection__para}`}>Your randomized pick:</p>
+            {randomizedMovie && <FilmItem selectedFilm={randomizedMovie} mxwidth="50%"/>}
+            <button className={classes.randomizerSection__button} onClick={() => setIsRandomizing(true)} disabled={isRandomizing}>
+                <img className={classes.randomizerSection__buttonIcon}src={rerollIcon} alt="reroll button icon" />
+                Re-roll
+                </button>
+        </div>
         
     )
 }
