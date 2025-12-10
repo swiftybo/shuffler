@@ -17,8 +17,10 @@ export async function fetchFilms(movieList) {
             if (!response.ok) {
             throw new Error("Failed to fetch film");
             }
+            
+            const movieInfo = await response.json()
 
-            return response.json();
+            return {...movieInfo, watchStatus: movie.status};
         })
     )
     console.log(availableMovies)

@@ -18,6 +18,9 @@ export default function FilmItem({selectedFilm, mxwidth="22vw"}) {
                     <p className={classes.filmItem__para}>📅 {selectedFilm.Year}</p>
                 </div>
                 <p><strong>Directed by:</strong> {selectedFilm.Director}</p>
+                <button className={`${classes.filmItem__watchBtn} ${selectedFilm.watchStatus === "watched" ? `${classes.watched}` : `${classes.notWatched}`}`}>
+                    {selectedFilm.watchStatus === "watched" ? "✔ Watched" : "✔ Mark as watched"}
+                </button>
             </div>
         </div>
     )

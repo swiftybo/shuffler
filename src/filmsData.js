@@ -1,9 +1,9 @@
 const filmList = [
-    { title: "The Godfather", year: 1972, status: "not watched" },
+    { title: "The Godfather", year: 1972, status: "watched" },
     { title: "12 Angry Men", year: 1957, status: "not watched" },
     { title: "10 Cloverfield Lane", year: 2016, status: "not watched" },
     { title: "Memento", year: 2000, status: "not watched" },
-    { title: "Shutter Island", year: 2010, status: "not watched" },
+    { title: "Shutter Island", year: 2010, status: "watched" },
     {
         title: "Spider-Man: Into the Spider-Verse",
         year: 2018,
