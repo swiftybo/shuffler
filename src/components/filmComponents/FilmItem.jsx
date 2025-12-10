@@ -1,16 +1,19 @@
 import classes from "./FilmItem.module.css"
 import watchedTick from "../../assets/watched-tick2.png"
+import { useFilmContext } from "../../store/film-context"
 
 export default function FilmItem({selectedFilm, mxwidth="22vw"}) {
+    const {toggleWatchStatus} = useFilmContext()
+
     return (
         <div className={classes.filmItem} style={{maxWidth: `${mxwidth}`}}>
-            {selectedFilm.watchStatus === "watched" && <img src={watchedTick} className={classes.filmItem__watchedTick} />}
+            {selectedFilm.watchStatus && <img src={watchedTick} className={classes.filmItem__watchedTick} />}
             <img className={classes.filmItem__img} src={selectedFilm.Poster} alt={`${selectedFilm.Title} poster`}></img>
             <div className={classes.filmItem__details}>
                 <h3 className={`oswald ${classes.filmItem__title}`}>{selectedFilm.Title}</h3>
                 <div className={classes.filmItem__genreList}>
-                    {selectedFilm.Genre.split(",").map(genre => { return (
-                        <div className={classes.filmItem__genre}>{genre}</div>
+                    {selectedFilm.Genre.split(",").map((genre, index) => { return (
+                        <div key={index} className={classes.filmItem__genre}>{genre}</div>
                     )
                     })}
                 </div>
@@ -20,8 +23,8 @@ export default function FilmItem({selectedFilm, mxwidth="22vw"}) {
                     <p className={classes.filmItem__para}>📅 {selectedFilm.Year}</p>
                 </div>
                 <p><strong>Directed by:</strong> {selectedFilm.Director}</p>
-                <button className={`${classes.filmItem__watchBtn} ${selectedFilm.watchStatus === "watched" ? `${classes.watched}` : `${classes.notWatched}`}`}>
-                    {selectedFilm.watchStatus === "watched" ? "✔ Watched" : "✔ Mark as watched"}
+                <button onClick={() => toggleWatchStatus(selectedFilm)} className={`${classes.filmItem__watchBtn} ${selectedFilm.watchStatus ? `${classes.watched}` : `${classes.notWatched}`}`}>
+                    {selectedFilm.watchStatus ? "✔ Watched" : "✔ Mark as watched"}
                 </button>
             </div>
         </div>

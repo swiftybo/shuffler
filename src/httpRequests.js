@@ -1,5 +1,3 @@
-import FilmsViewerSection from "./components/filmComponents/FilmsViewerSection";
-
 const OPTIONS = {
         method: 'GET',
         headers: {
@@ -20,7 +18,7 @@ export async function fetchFilms(movieList) {
             
             const movieInfo = await response.json()
 
-            return {...movieInfo, watchStatus: movie.status};
+            return {...movieInfo, watchStatus: movie.watched};
         })
     )
     console.log(availableMovies)

@@ -1,13 +1,16 @@
 import classes from "./FilmsViewerSection.module.css"
 import FilmItem from "./FilmItem.jsx";
+import { useFilmContext } from "../../store/film-context.jsx";
 
-export default function FilmsViewerSection({fetchingStatus, allFilms, error}) {
+export default function FilmsViewerSection() {
+  const {isFetching, fetchedFilms, error} = useFilmContext()
+  
   return (
     <div className={classes.viewerSection}>
       <h2 className={`josefin-sans ${classes.viewerSection__subheader}`}>Your Films</h2>
-      {fetchingStatus && <p>Fetching films</p>}
-      {!fetchingStatus && <div className={classes.viewerSection__filmContent}>
-        {allFilms.map(film => (
+      {isFetching && <p>Fetching films</p>}
+      {!isFetching && <div className={classes.viewerSection__filmContent}>
+        {fetchedFilms.map(film => (
           <FilmItem key={film.Title} selectedFilm={film}/>
         ))
       }</div>}
