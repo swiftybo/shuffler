@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 0.5px solid black;
+    border: 0.5px solid rgb(179, 178, 178);
 }
 
 .actionBtn__icon {

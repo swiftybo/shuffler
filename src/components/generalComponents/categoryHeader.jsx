@@ -6,7 +6,7 @@ export default function CategoryHeader({films}) {
         <header className={classes.header}>
             <img className={classes.header__logo} src={filmLogo} alt="film logo"></img>
             <h2 className={`josefin-sans ${classes.header__title}`}>Films & Shows</h2>
-            <p>{films.length} movies in your list</p>
+            <p>{films.length} films in your list</p>
         </header>
     )
 }

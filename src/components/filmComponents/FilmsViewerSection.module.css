@@ -1,3 +1,17 @@
+.viewerSection {
+    margin: 2rem 0rem;
+    border: 1px solid rgb(179, 178, 178);
+    background: white;
+    border-radius: 1rem;
+    width: 85%;
+    box-shadow: 0px 0px 1.5px 0px grey;
+}
+
+.viewerSection__subheader {
+    margin: 1.5rem 2rem;
+    font-weight: 600;
+}
+
 .filmContent {
     display: flex;
     justify-content: center;
