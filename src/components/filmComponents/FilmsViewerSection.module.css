@@ -1,11 +1,26 @@
-.filmContent {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+.viewerSection {
+    margin: 2rem 0rem;
+    padding: 2rem 1rem;
+    border: 1px solid rgb(218, 217, 217);
+    background: white;
+    border-radius: 1rem;
+    width: 85%;
+    box-shadow: 0px 0px 1.5px 0px rgb(182, 182, 182);
 }
 
-.error {
+.viewerSection__subheader {
+    margin: 0rem 1.5rem 1rem;
+    font-weight: 400;
+}
+
+.viewerSection__filmContent {
+    display: flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    /* gap: 1rem; */
+}
+
+.viewerSection__error {
     color: red;
     font-size: 1.5rem;
 }

@@ -11,6 +11,7 @@ export default function Menu() {
     <section className="menu">
       <Link to="/films">
         <MenuItem
+          key="films"
           title="Films"
           logo={filmLogo}
           buzzWords={["Netflix", "Cinema"]}
@@ -19,23 +20,26 @@ export default function Menu() {
         </MenuItem>
       </Link>
       <MenuItem
+        key="restaurants"
         title="Restaurants"
         logo={restaurantLogo}
-        buzzWords={["Cuisine", "Buffet"]}
+        buzzWords={["Cuisine", "Buffet", "À la carte"]}
       >
         Find the perfect spot to eat date night.
       </MenuItem>
       <MenuItem
+        key="activites"
         title="Activities"
         logo={activityLogo}
-        buzzWords={["Outdoor", "Chill"]}
+        buzzWords={["Outdoor", "Chill", "Active"]}
       >
         Explore fun things to do together.
       </MenuItem>
       <MenuItem
+        key="recipes"
         title="Cook Together"
         logo={cookingLogo}
-        buzzWords={["One-Pot", "Gourmet"]}
+        buzzWords={["One-Pot", "Gourmet", "Quick"]}
       >
         Cook something delicious together.
       </MenuItem>

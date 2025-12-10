@@ -1,43 +1,17 @@
-import { useState, useEffect } from "react";
-import { fetchFilms } from "../../httpRequests.js";
-import { filmList } from "../../filmsData.js"
 import classes from "./FilmsViewerSection.module.css"
 import FilmItem from "./FilmItem.jsx";
 
-export default function FilmsViewerSection() {
-  // 1. Loading state: tell user that the app is currently fetching data
-  const [isFetching, setIsFetching] = useState(false);
-  // 2. Data state: storing the fetched data
-  const [availableFilms, setAvailableFilms] = useState([]);
-  // 3. Error state: state to show potential errors on the UI
-  const [error, setError] = useState();
-
-  useEffect(() => {
-    setIsFetching(true);
-    async function getAllFilms() {
-      try {
-        const films = await fetchFilms(filmList)
-        setAvailableFilms(films)
-        setIsFetching(false);
-      } catch(error) {
-        setError({
-          message: error.message || "Could not fetch films, please try again later."
-        })
-        setIsFetching(false)
-      }
-    }
-    getAllFilms()
-  }, [filmList]);
-
+export default function FilmsViewerSection({fetchingStatus, allFilms, error}) {
   return (
-    <>
-      {isFetching && <p>Fetching films</p>}
-      {!isFetching && <div className={classes.filmContent}>
-        {availableFilms.map(film => (
+    <div className={classes.viewerSection}>
+      <h2 className={`josefin-sans ${classes.viewerSection__subheader}`}>Your Films</h2>
+      {fetchingStatus && <p>Fetching films</p>}
+      {!fetchingStatus && <div className={classes.viewerSection__filmContent}>
+        {allFilms.map(film => (
           <FilmItem key={film.Title} selectedFilm={film} />
         ))
       }</div>}
-      {error && <p className={classes.error}>Error: {error.message}</p>}
-    </>
+      {error && <p className={classes.viewerSection__error}>Error: {error.message}</p>}
+    </div>
   )
 }

@@ -1,5 +1,4 @@
 /* Have attempted to implement BEM naming convention throughout this project */
-
 * {
   box-sizing: border-box;
 }
@@ -8,19 +7,55 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  width: 100vw;
+  height: 100vh;
 }
 
-main {
-  text-align: center;
-  background-color: rgb(246, 246, 246);
+/* LESSON LEARNT: Adding flex display on the root was necessary for the shuffler_content container (child of root) to be able to flex-grow to fill the remaining available height */
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
+/* FONTS */
+.oswald {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.josefin-sans {
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 350;
+  font-style: italic;
+}
+/* END OF FONTS */
+
+/* NAVIGATION BAR STYLES*/
 .navbar {
-  width: 100%;
-  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+  /* sticky position may be needed to stick the navbar to the top if the user scrolls down the page. Currently not enough content to need to scroll*/
+  /* position: sticky;
+  top: 0; */
+  box-shadow: 0rem 0.25rem 2px -2px rgba(0, 0, 0, 0.2);
   padding: 0.5rem 4rem;
   display: flex;
   justify-content: space-between;
+  /* LESSON LEARNT: (SEE BELOW LESSON WHICH OVERRULES THIS) Margin required at bottom so that the shuffler_content container does not code the box-shadow */
+  /* margin-bottom: 0.25rem; */
+  /* LESSON LEARNT: Previous problem was resolved by toggling the z-index so that the navbar renders ontop of the shuffler_content and therefore the box-shadow is visible. */
+  z-index: 1;
+}
+
+.navbar__section {
+  display: flex;
+  align-items: center;
+}
+
+.section-left {
+  gap: 1rem;
 }
 
 .navbar__img {
@@ -31,6 +66,16 @@ main {
 
 .navbar__title {
   text-transform: uppercase;
+  font-weight: 600;
+}
+
+.section-right {
+  list-style-type: none;
+  font-size: 1.3rem;
+  gap: 2rem;
+  padding-right: 5rem;
+  padding-top: 0.5rem;
+  font-weight: 400;
 }
 
 a {
@@ -43,31 +88,22 @@ li a.active {
   color: orange;
   text-decoration: underline;
 }
+/* END OF NAVIGATION BAR STYLES*/
 
-.oswald {
-  font-family: "Oswald", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
 
-.navbar__section {
+/* SHUFFLER CONTAINER STYLES */
+.shuffler_content {
+  /* text-align: center; */
+  /* LESSON LEARNT: parent container (i.e. #root) must also have display flex applied so that this child container can use flex-grow to fill the remaining space.*/
+  /* LESSON LEARNT: There is a Fragment inbetween the #root and shuffler content class, however React framents do not contribute to the actual DOM tree. */
+  flex-grow: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  background-color: rgb(246, 246, 246);
 }
 
-.section-left {
-  gap: 1rem;
-}
-
-.section-right {
-  list-style-type: none;
-  font-size: 1.3rem;
-  gap: 2rem;
-  padding-right: 5rem;
-}
-
-.intro {
+.home {
   padding: 2rem 0rem;
   display: flex;
   flex-direction: column;
@@ -75,37 +111,33 @@ li a.active {
   align-items: center;
 }
 
-.josefin-sans {
-  font-family: "Josefin Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 350;
-  font-style: italic;
+.home__header {
+  font-weight: 600;
 }
 
-.intro__para {
-  font-size: medium;
-}
-
-.subheader {
+.home__subheader {
   font-weight: 500;
 }
+/* END OF SHUFFLER CONTAINER STYLES */
 
+/* MENU STYLES */
 .menu {
   list-style-type: none;
   display: flex;
   justify-content: center;
-  align-items: center;
   margin: 1rem;
 }
 
 .menuItem {
   margin: 1rem;
   padding: 1.5rem 1rem;
-  width: 15rem;
-  height: 15rem;
+  max-width: 13vw;
+  min-height: 23vh;
+  max-height: 26vh;
   border-radius: 1rem;
   background-color: white;
-  box-shadow: 4px 4px 2px -2px rgba(0.2, 0.2, 0.2, 0.2);
+  box-shadow: 4px 4px 2px -1px rgba(0.2, 0.2, 0.2, 0.2);
+  text-align: center;
 }
 
 .menuItem__logo {
@@ -113,27 +145,34 @@ li a.active {
   height: 4rem;
 }
 
+.menuItem__header {
+  margin: 1rem 0rem 0.8rem;
+  font-weight: 600;
+}
+
 .menuItem__description {
   font-size: 0.9rem;
   margin: 0.75rem 0rem;
 }
 
-.menuItem__buzzWords {
+.menuItem__buzzSection {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
-.menuCategory {
-  margin: 0.5rem;
+.menuItem__buzzword {
+  margin: 0.25rem 0.25rem;
   padding: 0.5rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: rgb(49, 48, 48);
-  background-color: lightgrey;
+  background-color: rgb(231, 228, 228);
   border-radius: 1rem;
 }
+/* END OF MENU STYLES */
 
 .content {
-  border: 1px solid black;
+  width: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;

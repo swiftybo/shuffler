@@ -1,25 +1,66 @@
 .filmItem {
-    border: 1px solid grey;
-    width: 13rem;
+    border: 1px solid rgb(204, 204, 204);
+    min-width: 20rem;
+    max-height: 38vh;
     border-radius: 1rem;
-}
-
-.filmItem__img {
-    height: 12rem;
-    margin-top: 0.5rem;
-}
-
-.filmItem__title {
+    display: flex;
+    overflow: hidden;
     margin: 0.5rem;
 }
 
+.filmItem:hover {
+    box-shadow: 1px 1px 2px 2px rgb(190, 190, 190);
+}
+
+.filmItem__img {
+    height: 100%;
+    max-width: 45%;
+    margin-right: 0.75rem;
+}
+
+.filmItem__details {
+    display: flex;
+    flex-direction: column;
+    padding: 0.25rem 1rem 0.25rem 0rem;
+    overflow-y:auto;
+    width: 100%;
+}
+
+.filmItem__title {
+    margin: 0.5rem 0rem;
+}
+
+.filmItem__genreList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 0.25rem;
+}
+
 .filmItem__genre {
-    color: rgb(252, 49, 49);
-    background-color: rgb(255, 163, 163);
-    
+    color: rgb(197, 54, 54);
+    background-color: rgb(248, 188, 188);
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
 }
 
 .filmItem__ageRating {
-    color: rgb(66, 66, 66);
-    background-color: grey;
+    color: rgb(97, 97, 97);
+    background-color: rgb(228, 227, 227);
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    width: fit-content;
+    margin-bottom: 0.5rem;
+}
+
+.filmItem__keyTimes {
+    display: flex;
+    margin: 0.5rem 0rem
+}
+
+.filmItem__para {
+    margin: 0rem 0.5rem 0rem 0rem;
+    font-size: 0.8rem;
 }
