@@ -4,10 +4,12 @@ import { useFilmContext } from "../../store/film-context.jsx";
 
 export default function FilmsViewerSection() {
   const {isFetching, fetchedFilms, error} = useFilmContext()
-  
+
   return (
     <div className={classes.viewerSection}>
+      <header>
       <h2 className={`josefin-sans ${classes.viewerSection__subheader}`}>Your Films</h2>
+      </header>
       {isFetching && <p>Fetching films</p>}
       {!isFetching && <div className={classes.viewerSection__filmContent}>
         {fetchedFilms.map(film => (

@@ -2,13 +2,20 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { fetchFilms } from "../httpRequests.js";
 import filmList from "../data/film-data.js";
 
-const FilmContext = createContext()
+const FilmContext = createContext({})
 
 export function FilmContextProvider({children}) {
     // STATE CONTROLLING VISIBILITY OF SECTIONS
     const [randomizerVisible, setRandomizerVisible] = useState(false)
     const [wildcardVisible, setWildcardVisible] = useState(false)
     const [filmsVisible, setFilmsVisible] = useState(false)
+    // STATE CONTROLLING FETCH STATUS OF MOVIE DATA
+    // 1. Loading state: tell user that the app is currently fetching data
+    const [isFetching, setIsFetching] = useState(false);
+    // 2. Data state: storing the fetched data
+    const [fetchedFilms, setFetchedFilms] = useState([]);
+    // 3. Error state: state to show potential errors on the UI
+    const [error, setError] = useState();
 
     function handleRandomizerVisibility() {
         setRandomizerVisible(prevState => !prevState)
@@ -24,14 +31,6 @@ export function FilmContextProvider({children}) {
         setFilmsVisible(prevState => !prevState)
     }
     
-    // STATE CONTROLLING FETCH STATUS OF MOVIE DATA
-    // 1. Loading state: tell user that the app is currently fetching data
-    const [isFetching, setIsFetching] = useState(false);
-    // 2. Data state: storing the fetched data
-    const [fetchedFilms, setFetchedFilms] = useState([]);
-    // 3. Error state: state to show potential errors on the UI
-    const [error, setError] = useState();
-  
     // USEEFFECT HOOK TO FETCH FILM DATA WHEN FILM PAGE OPENED
     useEffect(() => {
       setIsFetching(true);
