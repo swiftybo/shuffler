@@ -33,7 +33,7 @@ export default function RandomizerSection() {
         <div className={classes.randomizerSection}>
             <p className={`${classes.randomizerSection__para}`}>Your randomized pick:</p>
             {/* TODO: Needs updating to reflect new state name */}
-            {randomizedMovieIndex >= 0 && <FilmItem selectedFilm={fetchedFilms[randomizedMovieIndex]} mxwidth="70%"/>}
+            {randomizedMovieIndex >= 0 && <FilmItem selectedFilm={fetchedFilms[randomizedMovieIndex]}/>}
             <button className={classes.randomizerSection__button} onClick={() => setIsRandomizing(true)} disabled={isRandomizing}>
                 <img className={classes.randomizerSection__buttonIcon}src={rerollIcon} alt="reroll button icon" />
                 Re-roll

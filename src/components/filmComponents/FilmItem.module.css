@@ -1,7 +1,9 @@
 .filmItem {
     position: relative;
     border: 1px solid rgb(204, 204, 204);
-    min-width: 25rem;
+    min-width: 22rem;
+    max-width: 33rem;
+    flex: 1 1 32%;
     min-height: 22vh;
     max-height: 28vh;
     border-radius: 1rem;
@@ -33,7 +35,7 @@
     flex-direction: column;
     padding: 0.25rem 1rem 0.25rem 0rem;
     overflow-y:auto;
-    width: 100%;
+    /* width: 100%; */
     flex: 1;
     background-color: rgb(255, 255, 255);
 }

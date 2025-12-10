@@ -2,11 +2,11 @@ import classes from "./FilmItem.module.css"
 import watchedTick from "../../assets/watched-tick2.png"
 import { useFilmContext } from "../../store/film-context"
 
-export default function FilmItem({selectedFilm, mxwidth="22vw"}) {
+export default function FilmItem({selectedFilm}) {
     const {toggleWatchStatus} = useFilmContext()
 
     return (
-        <div className={classes.filmItem} style={{maxWidth: `${mxwidth}`}}>
+        <div className={classes.filmItem}>
             {selectedFilm.watchStatus && <img src={watchedTick} className={classes.filmItem__watchedTick} />}
             <img className={classes.filmItem__img} src={selectedFilm.Poster} alt={`${selectedFilm.Title} poster`}></img>
             <div className={classes.filmItem__details}>
