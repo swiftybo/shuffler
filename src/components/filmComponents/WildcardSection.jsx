@@ -68,12 +68,12 @@ export default function WildcardSection() {
 
             {currentOperation === "identifying" && <section className={classes.identifiedMovie}>
                 {identifiedMovies.length > 1 && <p className={classes.identifiedMovie__warning}>Multiple movies with the name "{formState.userMovieTitle}" have been found. Please select the correct one so we can generate the best recommendation for you!</p>}
-                <div className={classes.wildcardMovie__summary}>
-                    <img src={`https://image.tmdb.org/t/p/w185${identifiedMovies[identifiedMovieIndex].poster_path}`} />
-                    <div className={classes.wildcardMovie__details}>
-                        <h2>{identifiedMovies[identifiedMovieIndex].original_title}</h2>
-                        <p>Summary: {identifiedMovies[identifiedMovieIndex].overview}</p>
-                        <p>Release Date: {identifiedMovies[identifiedMovieIndex].release_date}</p>
+                <div className={classes.identifiedMovie__summary}>
+                    <img src={`https://image.tmdb.org/t/p/w185${identifiedMovies[identifiedMovieIndex].poster_path}`} alt={`${identifiedMovies[identifiedMovieIndex].original_title} movie poster`} />
+                    <div className={classes.identifiedMovie__details}>
+                        <h2 style={{fontFamily: "Arial, Helvetica, sans-serif"}}>{identifiedMovies[identifiedMovieIndex].original_title}</h2>
+                        <p><strong>Summary:</strong> {identifiedMovies[identifiedMovieIndex].overview}</p>
+                        <p><strong>Release Date:</strong> {identifiedMovies[identifiedMovieIndex].release_date}</p>
                     </div>
                 </div>
                 <div className={classes.wildcardMovie__buttons}>

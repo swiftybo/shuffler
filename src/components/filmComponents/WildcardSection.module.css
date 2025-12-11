@@ -77,27 +77,28 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    border: 1px solid black
+    /* border: 1px solid black */
 }
 
-/* position: relative;
-    border: 1px solid rgb(204, 204, 204);
+.identifiedMovie__warning {
+    width: 50%;
+    margin: 0rem;
+    color: rgb(254, 111, 111);
+}
+
+.identifiedMovie__summary {
+    display: flex;
+    border: 1px solid rgb(130, 129, 129);
     min-width: 22rem;
     max-width: 33rem;
     flex: 1 1 32%;
     min-height: 22vh;
     border-radius: 1rem;
-    display: flex;
     overflow: hidden;
-    margin: 0.5rem; */
-
-.wildcardMovie__summary {
-    display: flex;
-    border: 1px solid rgb(204, 204, 204);
-
+    margin: 1rem;
 }
 
-.wildcardMovie__details {
+.identifiedMovie__details {
     padding: 0rem 2rem;
 }
 
