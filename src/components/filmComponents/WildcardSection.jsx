@@ -50,24 +50,24 @@ export default function WildcardSection() {
 
     return (
         <div className={classes.wildcardSection}>
-            <form action={formAction} className={classes.wildcardSection__form} >
-                <h3 className={classes.wildcardSection__formTitle}>Give me an idea of the type of film you're feeling like...</h3>
-                <section className={classes.wildcardSection__formInputSection}>
-                    <div className={classes.wildcardSection__formField}>
-                        <label className={classes.wildcardSection__formLabel} name="movieTitle">Movie Title:</label>
-                        <input size="27" className={classes.wildcardSection__formInput} name="movieTitle" type="text" defaultValue={formState.userMovieTitle} required/>
+            <form action={formAction} className={classes.form} >
+                <h3 className={classes.form__title}>Give me an idea of the type of film you're feeling like...</h3>
+                <section className={classes.form__inputSection}>
+                    <div className={classes.form__field}>
+                        <label className={classes.form__label} name="movieTitle">Movie Title:</label>
+                        <input size="27" className={classes.form__input} name="movieTitle" type="text" defaultValue={formState.userMovieTitle} required/>
                     </div>
-                    <div className={classes.wildcardSection__formField}>
-                        <label className={classes.wildcardSection__formLabel} name="movieYear">Year of Release:<img className={classes.wildcardSection__infoIcon} src={infoIcon} onMouseEnter={() => setIsInfoBoxVisible(true)} onMouseLeave={() => setIsInfoBoxVisible(false)}/></label>
-                        {isInfoBoxVisible && <div className={classes.wildcardSection__infoBox}>Providing a year will help in identifying the movie you are thinking about!</div>}
-                        <input size="16" className={classes.wildcardSection__formInput} name="movieYear" type="text" defaultValue={formState.userMovieYear}/>
+                    <div className={classes.form__field}>
+                        <label className={classes.form__label} name="movieYear">Year of Release:<img className={classes.form__infoIcon} src={infoIcon} onMouseEnter={() => setIsInfoBoxVisible(true)} onMouseLeave={() => setIsInfoBoxVisible(false)}/></label>
+                        {isInfoBoxVisible && <div className={classes.form__infoBox}>Providing a year will help in identifying the movie you are thinking about!</div>}
+                        <input size="16" className={classes.form__input} name="movieYear" type="text" defaultValue={formState.userMovieYear}/>
                     </div>
-                    <button className={classes.wildcardSection__formBtn}>Go!</button>
+                    <button className={classes.form__btn}>Go!</button>
                 </section>
             </form>
 
-            {currentOperation === "identifying" && <section className={classes.wildcardMovie}>
-                {identifiedMovies.length > 1 && <p>Multiple movies with the name "{formState.userMovieTitle}" have been found. Please select the correct one so we can generate the best recommendation for you!</p>}
+            {currentOperation === "identifying" && <section className={classes.identifiedMovie}>
+                {identifiedMovies.length > 1 && <p className={classes.identifiedMovie__warning}>Multiple movies with the name "{formState.userMovieTitle}" have been found. Please select the correct one so we can generate the best recommendation for you!</p>}
                 <div className={classes.wildcardMovie__summary}>
                     <img src={`https://image.tmdb.org/t/p/w185${identifiedMovies[identifiedMovieIndex].poster_path}`} />
                     <div className={classes.wildcardMovie__details}>

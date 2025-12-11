@@ -11,12 +11,12 @@
     align-items: center;
 }
 
-.wildcardSection__form {
+.form {
     text-align: center;
     padding: 1rem;
 }
 
-.wildcardSection__formTitle {
+.form__title {
     margin: 0rem;
     padding-bottom: 1rem;
     font-family: Arial, Helvetica, sans-serif;
@@ -24,33 +24,33 @@
     font-size: medium;
 }
 
-.wildcardSection__formInputSection {
+.form__inputSection {
     display: flex;
 }
 
-.wildcardSection__formField {
+.form__field {
     text-align: left;
     margin: 1rem;
     position: relative;
 }
 
-.wildcardSection__formLabel {
+.form__label {
     display: block;
     margin-bottom: 0.3rem;
 }
 
-.wildcardSection__formInput {
+.form__input {
     display: block;
     size: 10rem;
 }
 
-.wildcardSection__infoIcon {
+.form__infoIcon {
     height: 0.7rem;
     width: 0.7rem;
     margin-left: 0.3rem;
 }
 
-.wildcardSection__infoBox{
+.form__infoBox{
     display: inline-block;
     width: 12rem;
     position: absolute;
@@ -63,7 +63,7 @@
     bottom: 2rem;
 }
 
-.wildcardSection__formBtn {
+.form__btn {
     height: 1.3rem;
     margin-top: 2.42rem;
     background: linear-gradient(to right, rgb(220, 182, 255) , rgb(255, 177, 177));
@@ -71,17 +71,30 @@
     border: 1px solid grey;
 }
 
-.wildcardMovie {
+.identifiedMovie {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 30rem;
+    width: 100%;
     border: 1px solid black
 }
 
+/* position: relative;
+    border: 1px solid rgb(204, 204, 204);
+    min-width: 22rem;
+    max-width: 33rem;
+    flex: 1 1 32%;
+    min-height: 22vh;
+    border-radius: 1rem;
+    display: flex;
+    overflow: hidden;
+    margin: 0.5rem; */
+
 .wildcardMovie__summary {
-    display: flex
+    display: flex;
+    border: 1px solid rgb(204, 204, 204);
+
 }
 
 .wildcardMovie__details {
