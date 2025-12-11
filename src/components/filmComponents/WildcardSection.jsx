@@ -1,7 +1,6 @@
 import { useState, useActionState, useEffect } from "react"
 import { fetchFilmID, fetchRecommendedFilm } from "../../httpRequests.js"
 import classes from "./WildCardSection.module.css"
-import FilmItem from "./FilmItem.jsx"
 const initialState = {userMovieTitle: "", userMovieYear: ""}
 
 export default function WildcardSection() {

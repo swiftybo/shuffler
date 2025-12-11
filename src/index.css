@@ -11,6 +11,10 @@ body {
   height: 100vh;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* LESSON LEARNT: Adding flex display on the root was necessary for the shuffler_content container (child of root) to be able to flex-grow to fill the remaining available height */
 #root {
   height: 100%;

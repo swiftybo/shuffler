@@ -1,16 +1,38 @@
 import classes from "./FilmsViewerSection.module.css"
 import FilmItem from "./FilmItem.jsx";
+import { useFilmContext } from "../../store/film-context.jsx";
+import { useState } from "react";
 
-export default function FilmsViewerSection({fetchingStatus, allFilms, error}) {
+export default function FilmsViewerSection() {
+  const {isFetching, fetchedFilms, error, watchedFilms, unwatchedFilms} = useFilmContext()
+  const [activeMovieList, setActiveMovieList] = useState("all")
+
   return (
     <div className={classes.viewerSection}>
-      <h2 className={`josefin-sans ${classes.viewerSection__subheader}`}>Your Films</h2>
-      {fetchingStatus && <p>Fetching films</p>}
-      {!fetchingStatus && <div className={classes.viewerSection__filmContent}>
-        {allFilms.map(film => (
-          <FilmItem key={film.Title} selectedFilm={film} />
+      <header className={classes.viewerSection__header}>
+        <h2 className={`${classes.viewerSection__title}`}>Your Films</h2>
+        <div className={classes.viewerSection__btnGroup}>
+          <button onClick={() => setActiveMovieList("all")} className={`${activeMovieList === "all" && classes.activeBtn} ${classes.viewerSection__filterBtn}`}>All</button>
+          <button onClick={() => setActiveMovieList("unwatched")} className={`${activeMovieList === "unwatched" && classes.activeBtn} ${classes.viewerSection__filterBtn}`}>To Watch</button>
+          <button onClick={() => setActiveMovieList("watched")} className={`${activeMovieList === "watched" && classes.activeBtn} ${classes.viewerSection__filterBtn}`}>Unwatched</button>
+        </div>
+        {/* <button>Add Movie</button> */}
+      </header>
+      {isFetching && <p>Fetching films</p>}
+      {!isFetching && <div className={classes.viewerSection__filmContent}>
+        {activeMovieList === "all" && fetchedFilms.map(film => (
+          <FilmItem key={film.Title} selectedFilm={film}/>
         ))
-      }</div>}
+        }
+        {activeMovieList === "unwatched" && unwatchedFilms.map(film => (
+          <FilmItem key={film.Title} selectedFilm={film}/>
+        ))
+        }
+        {activeMovieList === "watched" && watchedFilms.map(film => (
+          <FilmItem key={film.Title} selectedFilm={film}/>
+        ))
+        }
+      </div>}
       {error && <p className={classes.viewerSection__error}>Error: {error.message}</p>}
     </div>
   )

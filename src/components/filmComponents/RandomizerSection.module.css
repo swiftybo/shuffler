@@ -18,7 +18,8 @@
     align-items: center;
     justify-content: center;
     font-size: 1rem;
-    background-color: rgb(252, 151, 133);
+    /* background-color: rgb(255, 255, 255); */
+    background-image: linear-gradient(to right, rgb(255, 255, 255) , rgb(255, 231, 164),  rgb(248, 116, 116));
     border-radius: 1rem;
     border: 1px solid rgb(248, 171, 168);
 }

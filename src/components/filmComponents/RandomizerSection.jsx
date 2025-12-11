@@ -2,13 +2,18 @@ import { useState, useEffect } from "react"
 import classes from "./RandomizerSection.module.css"
 import FilmItem from "./FilmItem"
 import rerollIcon from "../../assets/reroll-icon.png"
+import { useFilmContext } from "../../store/film-context"
 
-export default function RandomizerSection({allFilms}) {
+export default function RandomizerSection() {
+    const {fetchedFilms} = useFilmContext()
+
     const [isRandomizing, setIsRandomizing] = useState(true)
-    const [randomizedMovie, setRandomizedMovie] = useState()
+    // Saving the randomized movie in this new state causes the "mark as watched" button to not work as this is not connected to the fetchedFilms state. 
+    const [randomizedMovieIndex, setRandomizedMovieIndex] = useState()
 
     function fetchRandomMovie() {
-        setRandomizedMovie(allFilms[Math.floor(Math.random() * allFilms.length)])
+        const randomisedMovie = fetchedFilms[Math.floor(Math.random() * fetchedFilms.length)]
+        setRandomizedMovieIndex(fetchedFilms.findIndex(film => film === randomisedMovie))
     }
 
     useEffect(() => {
@@ -27,7 +32,8 @@ export default function RandomizerSection({allFilms}) {
     return (
         <div className={classes.randomizerSection}>
             <p className={`${classes.randomizerSection__para}`}>Your randomized pick:</p>
-            {randomizedMovie && <FilmItem selectedFilm={randomizedMovie} mxwidth="50%"/>}
+            {/* TODO: Needs updating to reflect new state name */}
+            {randomizedMovieIndex >= 0 && <FilmItem selectedFilm={fetchedFilms[randomizedMovieIndex]}/>}
             <button className={classes.randomizerSection__button} onClick={() => setIsRandomizing(true)} disabled={isRandomizing}>
                 <img className={classes.randomizerSection__buttonIcon}src={rerollIcon} alt="reroll button icon" />
                 Re-roll
