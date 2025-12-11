@@ -1,6 +1,7 @@
 import { useState, useActionState, useEffect } from "react"
 import { fetchFilmID, fetchRecommendedFilm } from "../../httpRequests.js"
 import classes from "./WildCardSection.module.css"
+import infoIcon from "../../assets/information-icon.png"
 const initialState = {userMovieTitle: "", userMovieYear: ""}
 
 export default function WildcardSection() {
@@ -20,6 +21,7 @@ export default function WildcardSection() {
     // state to save the current suggested movies based on the user's inputs
     const [suggestedMovies, setSuggestedMovies] = useState([])
     const [suggestedMovieIndex, setSuggestedMovieIndex] = useState(0)
+    const [isInfoBoxVisible, setIsInfoBoxVisible] = useState(false)
 
     useEffect(() => {
         // Conditional check added here
@@ -53,10 +55,11 @@ export default function WildcardSection() {
                 <section className={classes.wildcardSection__formInputSection}>
                     <div className={classes.wildcardSection__formField}>
                         <label className={classes.wildcardSection__formLabel} name="movieTitle">Movie Title:</label>
-                        <input size="27" className={classes.wildcardSection__formInput} name="movieTitle" type="text" defaultValue={formState.userMovieTitle}/>
+                        <input size="27" className={classes.wildcardSection__formInput} name="movieTitle" type="text" defaultValue={formState.userMovieTitle} required/>
                     </div>
                     <div className={classes.wildcardSection__formField}>
-                        <label className={classes.wildcardSection__formLabel} name="movieYear">Year of Release: </label>
+                        <label className={classes.wildcardSection__formLabel} name="movieYear">Year of Release:<img className={classes.wildcardSection__infoIcon} src={infoIcon} onMouseEnter={() => setIsInfoBoxVisible(true)} onMouseLeave={() => setIsInfoBoxVisible(false)}/></label>
+                        {isInfoBoxVisible && <div className={classes.wildcardSection__infoBox}>Providing a year will help in identifying the movie you are thinking about!</div>}
                         <input size="16" className={classes.wildcardSection__formInput} name="movieYear" type="text" defaultValue={formState.userMovieYear}/>
                     </div>
                     <button className={classes.wildcardSection__formBtn}>Go!</button>
