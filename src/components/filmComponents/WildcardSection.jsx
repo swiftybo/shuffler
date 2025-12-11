@@ -47,14 +47,20 @@ export default function WildcardSection() {
     }
 
     return (
-        <>
-            <form action={formAction} >
-                <h4>Give me an idea of the type of film you're feeling like...</h4>
-                <label name="movieTitle">Movie Title:</label>
-                <input name="movieTitle" type="text" defaultValue={formState.userMovieTitle}/>
-                <label name="movieYear">Year of Release:</label>
-                <input name="movieYear" type="text" defaultValue={formState.userMovieYear}/>
-                <button>Go!</button>
+        <div className={classes.wildcardSection}>
+            <form action={formAction} className={classes.wildcardSection__form} >
+                <h3 className={classes.wildcardSection__formTitle}>Give me an idea of the type of film you're feeling like...</h3>
+                <section className={classes.wildcardSection__formInputSection}>
+                    <div className={classes.wildcardSection__formField}>
+                        <label className={classes.wildcardSection__formLabel} name="movieTitle">Movie Title:</label>
+                        <input size="27" className={classes.wildcardSection__formInput} name="movieTitle" type="text" defaultValue={formState.userMovieTitle}/>
+                    </div>
+                    <div className={classes.wildcardSection__formField}>
+                        <label className={classes.wildcardSection__formLabel} name="movieYear">Year of Release: </label>
+                        <input size="16" className={classes.wildcardSection__formInput} name="movieYear" type="text" defaultValue={formState.userMovieYear}/>
+                    </div>
+                    <button className={classes.wildcardSection__formBtn}>Go!</button>
+                </section>
             </form>
 
             {currentOperation === "identifying" && <section className={classes.wildcardMovie}>
@@ -89,6 +95,6 @@ export default function WildcardSection() {
                     {suggestedMovieIndex < suggestedMovies.length -1 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue + 1)}>Next Movie</button>}
                 </div>
             </section>}
-        </>
+        </div>
     )
 }
