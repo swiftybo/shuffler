@@ -17,6 +17,10 @@ export function FilmContextProvider({children}) {
     // 3. Error state: state to show potential errors on the UI
     const [error, setError] = useState();
 
+    // Derived state to get the list of watched and unwatched films
+    const watchedFilms = fetchedFilms.filter(film => film.watchStatus === true)
+    const unwatchedFilms = fetchedFilms.filter(film => film.watchStatus === false)
+
     function handleRandomizerVisibility() {
         setRandomizerVisible(prevState => !prevState)
         setWildcardVisible(false)
@@ -61,7 +65,7 @@ export function FilmContextProvider({children}) {
     }
 
     return (
-        <FilmContext.Provider value={{filmsVisible, wildcardVisible, randomizerVisible, isFetching, fetchedFilms, error, handleFilmVisibility, handleWildcardVisibility, handleRandomizerVisibility, toggleWatchStatus}}>
+        <FilmContext.Provider value={{filmsVisible, wildcardVisible, randomizerVisible, isFetching, fetchedFilms, error, handleFilmVisibility, handleWildcardVisibility, handleRandomizerVisibility, toggleWatchStatus, watchedFilms, unwatchedFilms}}>
             {children}
         </FilmContext.Provider>
     )

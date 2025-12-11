@@ -11,8 +11,6 @@ export default function FilmPage() {
   return (
     <main className="content">
       <CategoryHeader films={fetchedFilms}/>
-      {/* <p>3 watched</p>
-      <p>3 to watch</p> */}
       <ActionButtons />
       {randomizerVisible && <RandomizerSection />}
       {wildcardVisible && <WildcardSection />}
