@@ -77,25 +77,25 @@ export default function WildcardSection() {
                     </div>
                 </div>
                 <div className={classes.identifiedMovie__buttons}>
-                    {identifiedMovieIndex > 0 && <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__reject}`} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue - 1)}>⬅️ Previous Movie</button>}
+                    <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__reject}`} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue - 1)} disabled={identifiedMovieIndex === 0}>⬅️ Previous Movie</button>
                     <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__confirm}`} onClick={confirmUserMovie}>Confirm</button>
-                    {identifiedMovieIndex < identifiedMovies.length -1 && <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__reject}`} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue + 1)}>Next Movie ➡️</button>}
+                    <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__reject}`} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue + 1)} disabled={identifiedMovieIndex === identifiedMovies.length -1}>Next Movie ➡️</button>
                 </div>
             </section>}
 
-            {currentOperation === "suggesting" && <section className={classes.wildcardMovie}>
-                <div className={classes.wildcardMovie__summary}>
+            {currentOperation === "suggesting" && <section className={classes.suggestedMovie}>
+                <div className={classes.suggestedMovie__summary}>
                     <img src={`https://image.tmdb.org/t/p/w185${suggestedMovies[suggestedMovieIndex].poster_path}`} />
-                    <div className={classes.wildcardMovie__details}>
-                        <h2>{suggestedMovies[suggestedMovieIndex].original_title}</h2>
-                        <p>Summary: {suggestedMovies[suggestedMovieIndex].overview}</p>
-                        <p>Release Date: {suggestedMovies[suggestedMovieIndex].release_date}</p>
+                    <div className={classes.suggestedMovie__details}>
+                        <h2 style={{fontFamily: "Arial, Helvetica, sans-serif"}}>{suggestedMovies[suggestedMovieIndex].original_title}</h2>
+                        <p><strong>Summary:</strong> {suggestedMovies[suggestedMovieIndex].overview}</p>
+                        <p><strong>Release Date:</strong> {suggestedMovies[suggestedMovieIndex].release_date}</p>
                     </div>
                 </div>
                 <div className={classes.wildcardMovie__buttons}>
-                    {suggestedMovieIndex > 0 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue - 1)}>⬅️ Previous Movie</button>}
+                    <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue - 1)} disabled={suggestedMovieIndex === 0}>⬅️ Previous Movie</button>
                     <button className={classes.wildcardMovie__confirmBtn} onClick={() => {console.log(`You've chosen ${suggestedMovies[suggestedMovieIndex].original_title}`)}}>Confirm ✅</button>
-                    {suggestedMovieIndex < suggestedMovies.length -1 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue + 1)}>Next Movie ➡️</button>}
+                    <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue + 1)} disabled={suggestedMovieIndex === suggestedMovies.length -1}>Next Movie ➡️</button>
                 </div>
             </section>}
         </div>
