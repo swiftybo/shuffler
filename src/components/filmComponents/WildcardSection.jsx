@@ -1,6 +1,7 @@
 import { useState, useActionState, useEffect } from "react"
 import { fetchFilmID, fetchRecommendedFilm } from "../../httpRequests.js"
 import classes from "./WildCardSection.module.css"
+import infoIcon from "../../assets/information-icon.png"
 const initialState = {userMovieTitle: "", userMovieYear: ""}
 
 export default function WildcardSection() {
@@ -20,6 +21,7 @@ export default function WildcardSection() {
     // state to save the current suggested movies based on the user's inputs
     const [suggestedMovies, setSuggestedMovies] = useState([])
     const [suggestedMovieIndex, setSuggestedMovieIndex] = useState(0)
+    const [isInfoBoxVisible, setIsInfoBoxVisible] = useState(false)
 
     useEffect(() => {
         // Conditional check added here
@@ -47,48 +49,55 @@ export default function WildcardSection() {
     }
 
     return (
-        <>
-            <form action={formAction} >
-                <h4>Give me an idea of the type of film you're feeling like...</h4>
-                <label name="movieTitle">Movie Title:</label>
-                <input name="movieTitle" type="text" defaultValue={formState.userMovieTitle}/>
-                <label name="movieYear">Year of Release:</label>
-                <input name="movieYear" type="text" defaultValue={formState.userMovieYear}/>
-                <button>Go!</button>
+        <div className={classes.wildcardSection}>
+            <form action={formAction} className={classes.form} >
+                <h3 className={classes.form__title}>Give me an idea of the type of film you're feeling like...</h3>
+                <section className={classes.form__inputSection}>
+                    <div className={classes.form__field}>
+                        <label className={classes.form__label} name="movieTitle">Movie Title:</label>
+                        <input size="27" className={classes.form__input} name="movieTitle" type="text" defaultValue={formState.userMovieTitle} required/>
+                    </div>
+                    <div className={classes.form__field}>
+                        <label className={classes.form__label} name="movieYear">Year of Release:<img className={classes.form__infoIcon} src={infoIcon} onMouseEnter={() => setIsInfoBoxVisible(true)} onMouseLeave={() => setIsInfoBoxVisible(false)}/></label>
+                        {isInfoBoxVisible && <div className={classes.form__infoBox}>Providing a year will help in identifying the movie you are thinking about!</div>}
+                        <input size="16" className={classes.form__input} name="movieYear" type="text" defaultValue={formState.userMovieYear}/>
+                    </div>
+                    <button className={classes.form__btn}>🔎Search </button>
+                </section>
             </form>
 
-            {currentOperation === "identifying" && <section className={classes.wildcardMovie}>
-                {identifiedMovies.length > 1 && <p>Multiple movies with the name "{formState.userMovieTitle}" have been found. Please select the correct one so we can generate the best recommendation for you!</p>}
-                <div className={classes.wildcardMovie__summary}>
-                    <img src={`https://image.tmdb.org/t/p/w185${identifiedMovies[identifiedMovieIndex].poster_path}`} />
-                    <div className={classes.wildcardMovie__details}>
-                        <h2>{identifiedMovies[identifiedMovieIndex].original_title}</h2>
-                        <p>Summary: {identifiedMovies[identifiedMovieIndex].overview}</p>
-                        <p>Release Date: {identifiedMovies[identifiedMovieIndex].release_date}</p>
+            {currentOperation === "identifying" && <section className={classes.identifiedMovie}>
+                {identifiedMovies.length > 1 && <p className={classes.identifiedMovie__warning}>Multiple movies with the name "{formState.userMovieTitle}" have been found. Please select the correct one so we can generate the best recommendation for you!</p>}
+                <div className={classes.identifiedMovie__summary}>
+                    <img src={`https://image.tmdb.org/t/p/w185${identifiedMovies[identifiedMovieIndex].poster_path}`} alt={`${identifiedMovies[identifiedMovieIndex].original_title} movie poster`} />
+                    <div className={classes.identifiedMovie__details}>
+                        <h2 style={{fontFamily: "Arial, Helvetica, sans-serif"}}>{identifiedMovies[identifiedMovieIndex].original_title}</h2>
+                        <p><strong>Summary:</strong> {identifiedMovies[identifiedMovieIndex].overview}</p>
+                        <p><strong>Release Date:</strong> {identifiedMovies[identifiedMovieIndex].release_date}</p>
                     </div>
                 </div>
-                <div className={classes.wildcardMovie__buttons}>
-                    {identifiedMovieIndex > 0 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue - 1)}>Previous Movie</button>}
-                    <button className={classes.wildcardMovie__confirmBtn} onClick={confirmUserMovie}>Confirm</button>
-                    {identifiedMovieIndex < identifiedMovies.length -1 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue + 1)}>Next Movie</button>}
+                <div className={classes.identifiedMovie__buttons}>
+                    <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__reject}`} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue - 1)} disabled={identifiedMovieIndex === 0}>⬅️ Previous Movie</button>
+                    <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__confirm}`} onClick={confirmUserMovie}>Confirm</button>
+                    <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__reject}`} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue + 1)} disabled={identifiedMovieIndex === identifiedMovies.length -1}>Next Movie ➡️</button>
                 </div>
             </section>}
 
-            {currentOperation === "suggesting" && <section className={classes.wildcardMovie}>
-                <div className={classes.wildcardMovie__summary}>
+            {currentOperation === "suggesting" && <section className={classes.suggestedMovie}>
+                <div className={classes.suggestedMovie__summary}>
                     <img src={`https://image.tmdb.org/t/p/w185${suggestedMovies[suggestedMovieIndex].poster_path}`} />
-                    <div className={classes.wildcardMovie__details}>
-                        <h2>{suggestedMovies[suggestedMovieIndex].original_title}</h2>
-                        <p>Summary: {suggestedMovies[suggestedMovieIndex].overview}</p>
-                        <p>Release Date: {suggestedMovies[suggestedMovieIndex].release_date}</p>
+                    <div className={classes.suggestedMovie__details}>
+                        <h2 style={{fontFamily: "Arial, Helvetica, sans-serif"}}>{suggestedMovies[suggestedMovieIndex].original_title}</h2>
+                        <p><strong>Summary:</strong> {suggestedMovies[suggestedMovieIndex].overview}</p>
+                        <p><strong>Release Date:</strong> {suggestedMovies[suggestedMovieIndex].release_date}</p>
                     </div>
                 </div>
                 <div className={classes.wildcardMovie__buttons}>
-                    {suggestedMovieIndex > 0 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue - 1)}>Previous Movie</button>}
-                    <button className={classes.wildcardMovie__confirmBtn} onClick={() => {console.log(`You've chosen ${suggestedMovies[suggestedMovieIndex].original_title}`)}}>Confirm</button>
-                    {suggestedMovieIndex < suggestedMovies.length -1 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue + 1)}>Next Movie</button>}
+                    <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue - 1)} disabled={suggestedMovieIndex === 0}>⬅️ Previous Movie</button>
+                    <button className={classes.wildcardMovie__confirmBtn} onClick={() => {console.log(`You've chosen ${suggestedMovies[suggestedMovieIndex].original_title}`)}}>Confirm ✅</button>
+                    <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue + 1)} disabled={suggestedMovieIndex === suggestedMovies.length -1}>Next Movie ➡️</button>
                 </div>
             </section>}
-        </>
+        </div>
     )
 }
