@@ -62,7 +62,7 @@ export default function WildcardSection() {
                         {isInfoBoxVisible && <div className={classes.form__infoBox}>Providing a year will help in identifying the movie you are thinking about!</div>}
                         <input size="16" className={classes.form__input} name="movieYear" type="text" defaultValue={formState.userMovieYear}/>
                     </div>
-                    <button className={classes.form__btn}>Go!</button>
+                    <button className={classes.form__btn}>🔎Search </button>
                 </section>
             </form>
 
@@ -76,10 +76,10 @@ export default function WildcardSection() {
                         <p><strong>Release Date:</strong> {identifiedMovies[identifiedMovieIndex].release_date}</p>
                     </div>
                 </div>
-                <div className={classes.wildcardMovie__buttons}>
-                    {identifiedMovieIndex > 0 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue - 1)}>Previous Movie</button>}
-                    <button className={classes.wildcardMovie__confirmBtn} onClick={confirmUserMovie}>Confirm</button>
-                    {identifiedMovieIndex < identifiedMovies.length -1 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue + 1)}>Next Movie</button>}
+                <div className={classes.identifiedMovie__buttons}>
+                    {identifiedMovieIndex > 0 && <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__reject}`} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue - 1)}>⬅️ Previous Movie</button>}
+                    <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__confirm}`} onClick={confirmUserMovie}>Confirm</button>
+                    {identifiedMovieIndex < identifiedMovies.length -1 && <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__reject}`} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue + 1)}>Next Movie ➡️</button>}
                 </div>
             </section>}
 
@@ -93,9 +93,9 @@ export default function WildcardSection() {
                     </div>
                 </div>
                 <div className={classes.wildcardMovie__buttons}>
-                    {suggestedMovieIndex > 0 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue - 1)}>Previous Movie</button>}
-                    <button className={classes.wildcardMovie__confirmBtn} onClick={() => {console.log(`You've chosen ${suggestedMovies[suggestedMovieIndex].original_title}`)}}>Confirm</button>
-                    {suggestedMovieIndex < suggestedMovies.length -1 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue + 1)}>Next Movie</button>}
+                    {suggestedMovieIndex > 0 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue - 1)}>⬅️ Previous Movie</button>}
+                    <button className={classes.wildcardMovie__confirmBtn} onClick={() => {console.log(`You've chosen ${suggestedMovies[suggestedMovieIndex].original_title}`)}}>Confirm ✅</button>
+                    {suggestedMovieIndex < suggestedMovies.length -1 && <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue + 1)}>Next Movie ➡️</button>}
                 </div>
             </section>}
         </div>

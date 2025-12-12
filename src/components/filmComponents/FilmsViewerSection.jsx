@@ -14,11 +14,11 @@ export default function FilmsViewerSection() {
         <div className={classes.viewerSection__btnGroup}>
           <button onClick={() => setActiveMovieList("all")} className={`${activeMovieList === "all" && classes.activeBtn} ${classes.viewerSection__filterBtn}`}>All</button>
           <button onClick={() => setActiveMovieList("unwatched")} className={`${activeMovieList === "unwatched" && classes.activeBtn} ${classes.viewerSection__filterBtn}`}>To Watch</button>
-          <button onClick={() => setActiveMovieList("watched")} className={`${activeMovieList === "watched" && classes.activeBtn} ${classes.viewerSection__filterBtn}`}>Unwatched</button>
+          <button onClick={() => setActiveMovieList("watched")} className={`${activeMovieList === "watched" && classes.activeBtn} ${classes.viewerSection__filterBtn}`}>Watched</button>
         </div>
         {/* <button>Add Movie</button> */}
       </header>
-      {isFetching && <p>Fetching films</p>}
+      {isFetching && <p className={classes.viewerSection__fetchPara}>Fetching films...</p>}
       {!isFetching && <div className={classes.viewerSection__filmContent}>
         {activeMovieList === "all" && fetchedFilms.map(film => (
           <FilmItem key={film.Title} selectedFilm={film}/>

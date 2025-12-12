@@ -30,7 +30,7 @@
 
 .form__field {
     text-align: left;
-    margin: 1rem;
+    margin: 0.7rem;
     position: relative;
 }
 
@@ -42,6 +42,9 @@
 .form__input {
     display: block;
     size: 10rem;
+    padding: 0.6rem 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(88, 88, 88);
 }
 
 .form__infoIcon {
@@ -60,13 +63,14 @@
     padding: 0.25rem;
     font-size: 0.7rem;
     left: 8rem;
-    bottom: 2rem;
+    bottom: 2.8rem;
 }
 
 .form__btn {
-    height: 1.3rem;
-    margin-top: 2.42rem;
-    background: linear-gradient(to right, rgb(220, 182, 255) , rgb(255, 177, 177));
+    height: 2.25rem;
+    padding: 0rem 0.7rem;
+    margin: 2.15rem 0.5rem 0rem;
+    background: linear-gradient(to right, rgb(197, 144, 248) , rgb(248, 151, 151));
     border-radius: 0.25rem;
     border: 1px solid grey;
 }
@@ -83,7 +87,7 @@
 .identifiedMovie__warning {
     width: 50%;
     margin: 0rem;
-    color: rgb(254, 111, 111);
+    color: rgb(233, 85, 85);
 }
 
 .identifiedMovie__summary {
@@ -102,6 +106,21 @@
     padding: 0rem 2rem;
 }
 
-.wildcardMovie__buttons {
+
+.identifiedMovie__buttons {
     margin: 1rem;
+}
+
+.identifiedMovie__btn {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid grey;
+    margin: 0rem 0.25rem
+}
+
+.identifiedMovie__confirm {
+    
+}
+
+.identifiedMovie__reject {
 }

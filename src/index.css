@@ -42,7 +42,8 @@ button {
 .navbar {
   /* sticky position may be needed to stick the navbar to the top if the user scrolls down the page. Currently not enough content to need to scroll*/
   /* position: sticky;
-  top: 0; */
+  top: 0;
+  background-color: white; */
   box-shadow: 0rem 0.25rem 2px -2px rgba(0, 0, 0, 0.2);
   padding: 0.5rem 4rem;
   display: flex;
