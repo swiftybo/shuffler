@@ -20,8 +20,8 @@ export default function WildcardSection() {
     const [identifiedMovieIndex, setIdentifiedMovieIndex] = useState(0)
 
     // state to save the current suggested movies based on the user's inputs
-    const [suggestedMovies, setSuggestedMovies] = useState([])
-    const [suggestedMovieIndex, setSuggestedMovieIndex] = useState(0)
+    const [recommendedMovie, setRecommendedMovie] = useState([])
+    const [recommendedMovieIndex, setRecommendedMovieIndex] = useState(0)
     const [isInfoBoxVisible, setIsInfoBoxVisible] = useState(false)
 
     useEffect(() => {
@@ -43,8 +43,8 @@ export default function WildcardSection() {
 
     async function confirmUserMovie() {
         const {results} = await fetchRecommendedFilm(identifiedMovies[identifiedMovieIndex].id)
-        setSuggestedMovies([...results])
-        setSuggestedMovieIndex(0) 
+        setRecommendedMovie([...results])
+        setRecommendedMovieIndex(0) 
         setCurrentOperation("suggesting")
         console.log(results)
     }
@@ -57,11 +57,11 @@ export default function WildcardSection() {
         }
     }
 
-    function handleSuggestedMovieIndex(change) {
+    function handleRecommendedMovieIndex(change) {
         if (change === "increment") {
-            setSuggestedMovieIndex(prevValue => prevValue + 1)
+            setRecommendedMovieIndex(prevValue => prevValue + 1)
         } else if (change === "decrement") {
-            setSuggestedMovieIndex(prevValue => prevValue - 1)
+            setRecommendedMovieIndex(prevValue => prevValue - 1)
         }
     }
 
@@ -91,8 +91,8 @@ export default function WildcardSection() {
 
             {currentOperation === "suggesting" && 
             <>
-                <p>Here are the recommended movies based on your suggestion: </p>
-                <FilmSelector movieList={suggestedMovies} movieIndex={suggestedMovieIndex} handleMovieIndex={handleSuggestedMovieIndex} />
+                <p className={`josefin-sans ${classes.recommendedMovie__para}`}>Here are the recommended movies based on your suggestion: </p>
+                <FilmSelector movieList={recommendedMovie} movieIndex={recommendedMovieIndex} handleMovieIndex={handleRecommendedMovieIndex} />
             </>}
         </div>
     )

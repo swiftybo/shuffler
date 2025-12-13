@@ -81,27 +81,9 @@
     color: rgb(233, 85, 85);
 }
 
-.suggestedMovie {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+.recommendedMovie__para {
+    font-size: 1rem;
+    color: rgb(116, 48, 116);
+    margin-bottom: 0.5rem;
 }
-
-.suggestedMovie__summary {
-    display: flex;
-    border: 1px solid rgb(130, 129, 129);
-    min-width: 22rem;
-    max-width: 33rem;
-    flex: 1 1 32%;
-    height: 30vh;
-    border-radius: 1rem;
-    overflow: hidden;
-    margin: 1rem;
-}
-
-.suggestedMovie__details {
-    padding: 0rem 2rem;
-    overflow-y: auto;
-}
+    
