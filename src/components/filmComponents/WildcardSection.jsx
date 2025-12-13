@@ -2,6 +2,7 @@ import { useState, useActionState, useEffect } from "react"
 import { fetchFilmID, fetchRecommendedFilm } from "../../httpRequests.js"
 import classes from "./WildCardSection.module.css"
 import infoIcon from "../../assets/information-icon.png"
+import FilmSelector from "./FilmSelector.jsx"
 const initialState = {userMovieTitle: "", userMovieYear: ""}
 
 export default function WildcardSection() {
@@ -19,8 +20,8 @@ export default function WildcardSection() {
     const [identifiedMovieIndex, setIdentifiedMovieIndex] = useState(0)
 
     // state to save the current suggested movies based on the user's inputs
-    const [suggestedMovies, setSuggestedMovies] = useState([])
-    const [suggestedMovieIndex, setSuggestedMovieIndex] = useState(0)
+    const [recommendedMovie, setRecommendedMovie] = useState([])
+    const [recommendedMovieIndex, setRecommendedMovieIndex] = useState(0)
     const [isInfoBoxVisible, setIsInfoBoxVisible] = useState(false)
 
     useEffect(() => {
@@ -42,10 +43,26 @@ export default function WildcardSection() {
 
     async function confirmUserMovie() {
         const {results} = await fetchRecommendedFilm(identifiedMovies[identifiedMovieIndex].id)
-        setSuggestedMovies([...results])
-        setSuggestedMovieIndex(0) 
+        setRecommendedMovie([...results])
+        setRecommendedMovieIndex(0) 
         setCurrentOperation("suggesting")
         console.log(results)
+    }
+
+    function handleIdentifiedMovieIndex(change) {
+        if (change === "increment") {
+            setIdentifiedMovieIndex(prevValue => prevValue + 1)
+        } else if (change === "decrement") {
+            setIdentifiedMovieIndex(prevValue => prevValue - 1)
+        }
+    }
+
+    function handleRecommendedMovieIndex(change) {
+        if (change === "increment") {
+            setRecommendedMovieIndex(prevValue => prevValue + 1)
+        } else if (change === "decrement") {
+            setRecommendedMovieIndex(prevValue => prevValue - 1)
+        }
     }
 
     return (
@@ -66,38 +83,20 @@ export default function WildcardSection() {
                 </section>
             </form>
 
-            {currentOperation === "identifying" && <section className={classes.identifiedMovie}>
+            {currentOperation === "identifying" && 
+            <>
                 {identifiedMovies.length > 1 && <p className={classes.identifiedMovie__warning}>Multiple movies with the name "{formState.userMovieTitle}" have been found. Please select the correct one so we can generate the best recommendation for you!</p>}
-                <div className={classes.identifiedMovie__summary}>
-                    <img src={`https://image.tmdb.org/t/p/w185${identifiedMovies[identifiedMovieIndex].poster_path}`} alt={`${identifiedMovies[identifiedMovieIndex].original_title} movie poster`} />
-                    <div className={classes.identifiedMovie__details}>
-                        <h2 style={{fontFamily: "Arial, Helvetica, sans-serif"}}>{identifiedMovies[identifiedMovieIndex].original_title}</h2>
-                        <p><strong>Summary:</strong> {identifiedMovies[identifiedMovieIndex].overview}</p>
-                        <p><strong>Release Date:</strong> {identifiedMovies[identifiedMovieIndex].release_date}</p>
-                    </div>
-                </div>
-                <div className={classes.identifiedMovie__buttons}>
-                    <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__reject}`} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue - 1)} disabled={identifiedMovieIndex === 0}>⬅️ Previous Movie</button>
-                    <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__confirm}`} onClick={confirmUserMovie}>Confirm</button>
-                    <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__reject}`} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue + 1)} disabled={identifiedMovieIndex === identifiedMovies.length -1}>Next Movie ➡️</button>
-                </div>
-            </section>}
+                <FilmSelector movieList={identifiedMovies} movieIndex={identifiedMovieIndex} handleMovieIndex={handleIdentifiedMovieIndex} confirmMovie={confirmUserMovie}/>
+            </>}
 
-            {currentOperation === "suggesting" && <section className={classes.suggestedMovie}>
-                <div className={classes.suggestedMovie__summary}>
-                    <img src={`https://image.tmdb.org/t/p/w185${suggestedMovies[suggestedMovieIndex].poster_path}`} />
-                    <div className={classes.suggestedMovie__details}>
-                        <h2 style={{fontFamily: "Arial, Helvetica, sans-serif"}}>{suggestedMovies[suggestedMovieIndex].original_title}</h2>
-                        <p><strong>Summary:</strong> {suggestedMovies[suggestedMovieIndex].overview}</p>
-                        <p><strong>Release Date:</strong> {suggestedMovies[suggestedMovieIndex].release_date}</p>
-                    </div>
-                </div>
-                <div className={classes.wildcardMovie__buttons}>
-                    <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue - 1)} disabled={suggestedMovieIndex === 0}>⬅️ Previous Movie</button>
-                    <button className={classes.wildcardMovie__confirmBtn} onClick={() => {console.log(`You've chosen ${suggestedMovies[suggestedMovieIndex].original_title}`)}}>Confirm ✅</button>
-                    <button className={classes.wildcardMovie__rejectBtn} onClick={() => setSuggestedMovieIndex(prevValue => prevValue + 1)} disabled={suggestedMovieIndex === suggestedMovies.length -1}>Next Movie ➡️</button>
-                </div>
-            </section>}
+            {currentOperation === "suggesting" && 
+            <>
+                <p className={`josefin-sans ${classes.recommendedMovie__para}`}>Here are the recommended movies based on your suggestion: </p>
+                <FilmSelector movieList={recommendedMovie} movieIndex={recommendedMovieIndex} handleMovieIndex={handleRecommendedMovieIndex} />
+            </>}
         </div>
     )
 }
+            
+ 
+    
