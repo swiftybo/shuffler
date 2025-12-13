@@ -2,6 +2,7 @@ import { useState, useActionState, useEffect } from "react"
 import { fetchFilmID, fetchRecommendedFilm } from "../../httpRequests.js"
 import classes from "./WildCardSection.module.css"
 import infoIcon from "../../assets/information-icon.png"
+import FilmSelector from "./FilmSelector.jsx"
 const initialState = {userMovieTitle: "", userMovieYear: ""}
 
 export default function WildcardSection() {
@@ -48,6 +49,14 @@ export default function WildcardSection() {
         console.log(results)
     }
 
+    function handleIdentifiedMovieIndex(change) {
+        if (change === "increment") {
+            setIdentifiedMovieIndex(prevValue => prevValue + 1)
+        } else if (change === "decrement") {
+            setIdentifiedMovieIndex(prevValue => prevValue - 1)
+        }
+    }
+
     return (
         <div className={classes.wildcardSection}>
             <form action={formAction} className={classes.form} >
@@ -66,7 +75,13 @@ export default function WildcardSection() {
                 </section>
             </form>
 
-            {currentOperation === "identifying" && <section className={classes.identifiedMovie}>
+            {currentOperation === "identifying" && 
+            <>
+                {identifiedMovies.length > 1 && <p className={classes.identifiedMovie__warning}>Multiple movies with the name "{formState.userMovieTitle}" have been found. Please select the correct one so we can generate the best recommendation for you!</p>}
+                <FilmSelector movieList={identifiedMovies} movieIndex={identifiedMovieIndex} handleMovieIndex={handleIdentifiedMovieIndex} confirmMovie={confirmUserMovie}/>
+            </>}
+
+            {/* {currentOperation === "identifying" && <section className={classes.identifiedMovie}>
                 {identifiedMovies.length > 1 && <p className={classes.identifiedMovie__warning}>Multiple movies with the name "{formState.userMovieTitle}" have been found. Please select the correct one so we can generate the best recommendation for you!</p>}
                 <div className={classes.identifiedMovie__summary}>
                     <img src={`https://image.tmdb.org/t/p/w185${identifiedMovies[identifiedMovieIndex].poster_path}`} alt={`${identifiedMovies[identifiedMovieIndex].original_title} movie poster`} />
@@ -81,7 +96,7 @@ export default function WildcardSection() {
                     <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__confirm}`} onClick={confirmUserMovie}>Confirm</button>
                     <button className={`${classes.identifiedMovie__btn} ${classes.identifiedMovie__reject}`} onClick={() => setIdentifiedMovieIndex(prevValue => prevValue + 1)} disabled={identifiedMovieIndex === identifiedMovies.length -1}>Next Movie ➡️</button>
                 </div>
-            </section>}
+            </section>} */}
 
             {currentOperation === "suggesting" && <section className={classes.suggestedMovie}>
                 <div className={classes.suggestedMovie__summary}>
