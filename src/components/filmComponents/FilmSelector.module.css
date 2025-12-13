@@ -12,11 +12,18 @@
     border: 1px solid rgb(130, 129, 129);
     min-width: 22rem;
     max-width: 33rem;
+    max-height: 50vh;
     flex: 1 1 32%;
     height: 30vh;
     border-radius: 1rem;
     overflow: hidden;
     margin: 1rem;
+}
+
+.movie__image {
+    height: 100%;
+    max-width: 45%;
+    margin-right: 0.75rem;
 }
 
 .movie__details {

@@ -4,7 +4,7 @@ export default function FilmSelector( {movieList, movieIndex, handleMovieIndex, 
     return (
         <section className={classes.movie}>
             <div className={classes.movie__summary}>
-                <img src={`https://image.tmdb.org/t/p/w185${movieList[movieIndex].poster_path}`} alt={`${movieList[movieIndex].original_title} movie poster`} />
+                <img className={classes.movie__image} src={`https://image.tmdb.org/t/p/w185${movieList[movieIndex].poster_path}`} alt={`${movieList[movieIndex].original_title} movie poster`} />
                 <div className={classes.movie__details}>
                     <h2 style={{fontFamily: "Arial, Helvetica, sans-serif"}}>{movieList[movieIndex].original_title}</h2>
                     <p><strong>Summary:</strong> {movieList[movieIndex].overview}</p>
