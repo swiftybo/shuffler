@@ -32,33 +32,7 @@ export async function fetchFilms(movieList) {
     console.log(availableMovies)
     return availableMovies 
 }
-        
-        
-//         movieList.map(async movie => {
-//             try {
-//                 const response = await fetch(`http://www.omdbapi.com/?t=${movie.title}&apikey=6f14816c`);
-                
-//                 if (!response.ok) {
-//                     throw new Error(`Failed to fetch film with title ${movie.title}`);
-//                 }
-                
-//                 const movieInfo = await response.json()
 
-//                 if (movieInfo.Response === "False") {
-//                     throw new Error(`Movie with title "${movie.title}" not found!`)
-//                 }
-    
-//                 return {...movieInfo, watchStatus: movie.watched};
-//             }
-//             catch (error) {
-//                 console.log(error)
-//                 return
-//             }
-//         })
-//     )
-//     console.log(availableMovies)
-//     return availableMovies 
-// }
 
 export async function fetchFilmID(movieTitle, movieYear) {
     try {

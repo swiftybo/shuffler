@@ -18,8 +18,8 @@ export function FilmContextProvider({children}) {
     const [error, setError] = useState();
 
     // Derived state to get the list of watched and unwatched films
-    const watchedFilms = fetchedFilms.filter(film => film.watchStatus === true)
-    const unwatchedFilms = fetchedFilms.filter(film => film.watchStatus === false)
+    const watchedFilms = fetchedFilms.filter(film => film?.watchStatus === true)
+    const unwatchedFilms = fetchedFilms.filter(film => film?.watchStatus === false)
 
     function handleRandomizerVisibility() {
         setRandomizerVisible(prevState => !prevState)
