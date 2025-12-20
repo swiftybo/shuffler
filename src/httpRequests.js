@@ -46,11 +46,16 @@ export async function fetchFilms(movieList) {
 export async function fetchFilmID(movieTitle, movieYear) {
     try {
         const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${movieTitle}&include_adult=false&language=en-US${movieYear ? `&primary_release_year=${movieYear}` : null}&page=1`, OPTIONS)
+        
+        console.log(response)
+        if (!response.ok) {
+            throw new Error("Failed to fetch the specified movie")
+        }
+        
         return await response.json()
     }
-    
-    catch {
-
+    catch (error) {
+        console.error(error.message)
     }
 }
 
