@@ -18,8 +18,8 @@ export function FilmContextProvider({children}) {
     const [error, setError] = useState();
 
     // Derived state to get the list of watched and unwatched films
-    const watchedFilms = fetchedFilms.filter(film => film.watchStatus === true)
-    const unwatchedFilms = fetchedFilms.filter(film => film.watchStatus === false)
+    const watchedFilms = fetchedFilms.filter(film => film?.watchStatus === true)
+    const unwatchedFilms = fetchedFilms.filter(film => film?.watchStatus === false)
 
     function handleRandomizerVisibility() {
         setRandomizerVisible(prevState => !prevState)
@@ -40,12 +40,18 @@ export function FilmContextProvider({children}) {
       setIsFetching(true);
       async function getAllFilms() {
         try {
-          const films = await fetchFilms(filmList)
+          const fetchedFilms = await fetchFilms(filmList)
+          const films = fetchedFilms.filter(film => film !== undefined)
+          
           setFetchedFilms(films)
           setIsFetching(false);
+
+          if (films.length === 0) {
+            throw new Error("Could not fetch any of the films!")
+          }
         } catch(error) {
           setError({
-            message: error.message || "Could not fetch films, please try again later."
+            message: error.message || "There was a problem fetching the films, please try again later."
           })
           setIsFetching(false)
         }

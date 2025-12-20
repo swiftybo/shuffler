@@ -2,6 +2,7 @@ import filmLogo from "../../assets/film-logo.png"
 import classes from "./CategoryHeader.module.css"
 import { useFilmContext } from "../../store/film-context"
 
+// TODO: change this to FilmHeader as this is now tailored specifically for the filmPage
 export default function CategoryHeader() {
     const {fetchedFilms, watchedFilms, unwatchedFilms, isFetching} = useFilmContext()
 

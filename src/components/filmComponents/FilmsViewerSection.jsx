@@ -19,10 +19,16 @@ export default function FilmsViewerSection() {
         {/* <button>Add Movie</button> */}
       </header>
       {isFetching && <p className={classes.viewerSection__fetchPara}>Fetching films...</p>}
-      {!isFetching && <div className={classes.viewerSection__filmContent}>
-        {activeMovieList === "all" && fetchedFilms.map(film => (
-          <FilmItem key={film.Title} selectedFilm={film}/>
-        ))
+      {!isFetching && fetchedFilms.length > 0 && <div className={classes.viewerSection__filmContent}>
+        {activeMovieList === "all" && fetchedFilms.map(film => {
+          if (film === undefined) {
+            console.error("Error loading some movies")
+            return
+          } else {
+            return <FilmItem key={film.Title} selectedFilm={film}/>
+          }
+        })
+        
         }
         {activeMovieList === "unwatched" && unwatchedFilms.map(film => (
           <FilmItem key={film.Title} selectedFilm={film}/>

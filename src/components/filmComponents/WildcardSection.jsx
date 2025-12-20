@@ -15,13 +15,24 @@ export default function WildcardSection() {
     // state to record if either identifying movies or suggesting movies 
     const [currentOperation, setCurrentOperation] = useState("")
 
-    // state to save the current identified movies based on the user's inputs
+    // Loading state (identified movies): state to tell the user that the app is currently fetching the identified movie(s)
+    const [isFetchingIdentifiedMovie, setIsFetchingIdentifiedMovie] = useState(false)
+    // Data state (identified movies): state to save the current identified movies based on the user's inputs
     const [identifiedMovies, setIdentifiedMovies] = useState([])
     const [identifiedMovieIndex, setIdentifiedMovieIndex] = useState(0)
+    // Error state (identified movies): state to show potential errors on the UI wrt fetching identified movies
+    const [identifiedMoviesError, setIdentifiedMoviesError] = useState()
 
-    // state to save the current suggested movies based on the user's inputs
-    const [recommendedMovie, setRecommendedMovie] = useState([])
+
+    // Loading state (identified movies): state to tell the user that the app is currently fetching the recommended movie(s)
+    const [isFetchingRecommendedMovies, setIsFetchingRecommendedMovies] = useState(false)
+    // Data state (suggested movies): state to save the current recommended movies based on the user's inputs
+    const [recommendedMovies, setRecommendedMovies] = useState([])
     const [recommendedMovieIndex, setRecommendedMovieIndex] = useState(0)
+    // Error state (suggested movies): state to show potential errors on the UI wrt fetching recommended movies
+    const [recommendedMoviesError, setRecommendedMoviesError] = useState()
+
+
     const [isInfoBoxVisible, setIsInfoBoxVisible] = useState(false)
 
     useEffect(() => {
@@ -32,22 +43,48 @@ export default function WildcardSection() {
         }
 
         async function findUserMovie() {
-            const {results} = await fetchFilmID(formState.userMovieTitle, formState.userMovieYear)
-            setIdentifiedMovies([...results])
-            setIdentifiedMovieIndex(0)
-            setCurrentOperation("identifying")
-            // console.log(results)
+            setCurrentOperation("suggesting")
+            try {
+                setIsFetchingIdentifiedMovie(true)
+                const {results} = await fetchFilmID(formState.userMovieTitle, formState.userMovieYear)
+                
+                if (results.length === 0) {
+                    throw new Error(`Could not find any films with the title "${formState.userMovieTitle}". Please check your spelling of the film or suggest a different film.`)
+                }
+                setIsFetchingIdentifiedMovie(false)
+                setIdentifiedMovies([...results])
+                setIdentifiedMoviesError()
+                setIdentifiedMovieIndex(0)
+            }
+            catch (error) {
+                setIdentifiedMoviesError({message: error.message || "Could not find your film!"})
+                setIsFetchingIdentifiedMovie(false)
+                setIdentifiedMovies([])
+            }
         }
     findUserMovie()}
     ,[formState.userMovieTitle, formState.userMovieYear])
 
     async function confirmUserMovie() {
-        const {results} = await fetchRecommendedFilm(identifiedMovies[identifiedMovieIndex].id)
-        setRecommendedMovie([...results])
-        setRecommendedMovieIndex(0) 
-        setCurrentOperation("suggesting")
-        console.log(results)
-    }
+        setCurrentOperation("recommending")
+        try {
+            setIsFetchingRecommendedMovies(true)
+            const {results} = await fetchRecommendedFilm(identifiedMovies[identifiedMovieIndex].id)
+
+            if (results.length === 0) {
+                throw new Error("Sorry, could not recommend any films from your suggestion 😔")
+            }
+            setIsFetchingRecommendedMovies(false)
+            setRecommendedMovies([...results])
+            setRecommendedMoviesError()
+            setRecommendedMovieIndex(0) 
+        }
+        catch (error) {
+            setRecommendedMoviesError({message: error.message || "Sorry! Could not recommend any films based on your suggestion."})
+            setIsFetchingRecommendedMovies(false)
+            setRecommendedMovies([])
+        }
+        }
 
     function handleIdentifiedMovieIndex(change) {
         if (change === "increment") {
@@ -83,16 +120,27 @@ export default function WildcardSection() {
                 </section>
             </form>
 
-            {currentOperation === "identifying" && 
+            {isFetchingIdentifiedMovie && <p>Fetching your suggested film</p>}
+            {currentOperation === "suggesting" && !isFetchingIdentifiedMovie && identifiedMovies.length > 0 &&
             <>
                 {identifiedMovies.length > 1 && <p className={classes.identifiedMovie__warning}>Multiple movies with the name "{formState.userMovieTitle}" have been found. Please select the correct one so we can generate the best recommendation for you!</p>}
                 <FilmSelector movieList={identifiedMovies} movieIndex={identifiedMovieIndex} handleMovieIndex={handleIdentifiedMovieIndex} confirmMovie={confirmUserMovie}/>
             </>}
+            {currentOperation === "suggesting" && !isFetchingIdentifiedMovie && identifiedMoviesError && 
+            <>
+                <p className={classes.movie__error}>{identifiedMoviesError.message}</p>
+            </>}
 
-            {currentOperation === "suggesting" && 
+
+            {isFetchingRecommendedMovies && <p>Fetching our recommendations</p>}
+            {currentOperation === "recommending" && !isFetchingRecommendedMovies && recommendedMovies.length > 0 &&
             <>
                 <p className={`josefin-sans ${classes.recommendedMovie__para}`}>Here are the recommended movies based on your suggestion: </p>
-                <FilmSelector movieList={recommendedMovie} movieIndex={recommendedMovieIndex} handleMovieIndex={handleRecommendedMovieIndex} />
+                <FilmSelector movieList={recommendedMovies} movieIndex={recommendedMovieIndex} handleMovieIndex={handleRecommendedMovieIndex} />
+            </>}
+            {currentOperation === "recommending" && !isFetchingRecommendedMovies && recommendedMoviesError && 
+            <>
+                <p className={classes.movie__error}>{recommendedMoviesError.message}</p>
             </>}
         </div>
     )
