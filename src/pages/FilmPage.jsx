@@ -6,7 +6,7 @@ import CategoryHeader from "../components/generalComponents/CategoryHeader";
 import { useFilmContext } from "../store/film-context";
 
 export default function FilmPage() {
-  const {filmsVisible, wildcardVisible, randomizerVisible, fetchedFilms} = useFilmContext()
+  const {filmsVisible, wildcardVisible, randomizerVisible, fetchedFilms, error} = useFilmContext()
 
   return (
     <main className="content">
@@ -15,6 +15,8 @@ export default function FilmPage() {
       {randomizerVisible && <RandomizerSection />}
       {wildcardVisible && <WildcardSection />}
       {filmsVisible && <FilmsViewerSection />}
+      {error && <p>{error.message}</p>}
+      
     </main>
   );
 }

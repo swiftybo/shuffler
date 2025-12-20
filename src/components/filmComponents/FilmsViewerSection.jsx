@@ -22,7 +22,7 @@ export default function FilmsViewerSection() {
       {!isFetching && <div className={classes.viewerSection__filmContent}>
         {activeMovieList === "all" && fetchedFilms.map(film => {
           if (film === undefined) {
-            console.log("error loading some movies")
+            console.error("Error loading some movies")
             return
           } else {
             return <FilmItem key={film.Title} selectedFilm={film}/>
