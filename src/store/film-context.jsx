@@ -40,7 +40,8 @@ export function FilmContextProvider({children}) {
       setIsFetching(true);
       async function getAllFilms() {
         try {
-          const films = await fetchFilms(filmList)
+          const fetchedFilms = await fetchFilms(filmList)
+          const films = fetchedFilms.filter(film => film !== undefined)
           
           setFetchedFilms(films)
           setIsFetching(false);

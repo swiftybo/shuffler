@@ -32,7 +32,7 @@ export async function fetchFilms(movieList) {
             })
         )
         if (availableMovies.every(movie => movie === undefined)) {
-            throw new Error("Problem communicating with the OMDBB API")
+            throw new Error("Problem communicating with the OMDB API")
         }
         return availableMovies 
     }
