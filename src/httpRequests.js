@@ -8,30 +8,26 @@ const OPTIONS = {
 
 export async function fetchFilms(movieList) {
     const availableMovies = await Promise.all(
-        // change this to a reducer function so that if an error is thrown, then the error can be shown but the rest of movies is still completed without empty object in new array
-        movieList.reduce(async (accumulator, currentMovie) => {
+        movieList.map(async movie => {
             try {
-                const response = await fetch(`http://www.omdbapi.com/?t=${currentMovie.title}&apikey=6f14816c`);
-
+                const response = await fetch(`http://www.omdbapi.com/?t=${movie.title}&apikey=6f14816c`);
+    
                 if (!response.ok) {
-                    throw new Error(`Failed to fetch film with title ${currentMovie.title}`);
+                    throw new Error("Failed to fetch film");
                 }
-
+                
                 const movieInfo = await response.json()
 
                 if (movieInfo.Response === "False") {
-                    throw new Error(`Movie with title "${currentMovie.title}" not found!`)
+                    return
                 }
-
-                // console.log({...movieInfo, watchStatus: currentMovie.watched})
-                console.log(accumulator)
-                return accumulator;
+    
+                return {...movieInfo, watchStatus: movie.watched};
             }
-            catch (error) {
-                console.log(error)
-                return accumulator
+            catch (error){
+                console.log(error.message)
             }
-        }, [])
+        })
     )
     console.log(availableMovies)
     return availableMovies 
