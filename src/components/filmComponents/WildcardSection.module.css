@@ -81,7 +81,7 @@
     color: rgb(233, 85, 85);
 }
 
-.identifiedMovie__error {
+.movie__error {
     width: 60%;
     margin: 0rem;
     color: rgb(233, 85, 85);

@@ -47,7 +47,6 @@ export async function fetchFilmID(movieTitle, movieYear) {
     try {
         const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${movieTitle}&include_adult=false&language=en-US${movieYear ? `&primary_release_year=${movieYear}` : null}&page=1`, OPTIONS)
         
-        console.log(response)
         if (!response.ok) {
             throw new Error("Failed to fetch the specified movie")
         }
@@ -60,6 +59,16 @@ export async function fetchFilmID(movieTitle, movieYear) {
 }
 
 export async function fetchRecommendedFilm(movieID) {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieID}/recommendations?language=en-US&page=1`, OPTIONS)
-    return await response.json()
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieID}/recommendations?language=en-US&page=1`, OPTIONS)
+        
+        if (!response.ok) {
+            throw new Error("Failed to fetch recommended movies")
+        }
+        
+        return await response.json()
+    }
+    catch (error) {
+        console.error(error.message)
+    }
 }
