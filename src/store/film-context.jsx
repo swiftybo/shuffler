@@ -41,11 +41,16 @@ export function FilmContextProvider({children}) {
       async function getAllFilms() {
         try {
           const films = await fetchFilms(filmList)
+          
           setFetchedFilms(films)
           setIsFetching(false);
+
+          if (films.length === 0) {
+            throw new Error("Could not fetch any of the films!")
+          }
         } catch(error) {
           setError({
-            message: error.message || "Could not fetch films, please try again later."
+            message: error.message || "There was a problem fetching the films, please try again later."
           })
           setIsFetching(false)
         }

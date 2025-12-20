@@ -11,16 +11,16 @@ export async function fetchFilms(movieList) {
         const availableMovies = await Promise.all(
             movieList.map(async movie => {
                 try {
-                    const response = await fetch(`http://www.omdbap.com/?t=${movie.title}&apikey=6f14816c`);
+                    const response = await fetch(`http://www.omdbapi.com/?t=${movie.title}&apikey=6f14816c`);
                     
-                    console.log(response)
                     if (!response.ok) {
-                        throw new Error("Failed to fetch film");
+                        throw new Error(`Failed to fetch film with title "${movie.title}"`);
                     }
                     
                     const movieInfo = await response.json()
     
                     if (movieInfo.Response === "False") {
+                        console.error(`We couldn't find the movie with title "${movie.title}"`)
                         return
                     }
         
@@ -34,7 +34,6 @@ export async function fetchFilms(movieList) {
         if (availableMovies.every(movie => movie === undefined)) {
             throw new Error("Problem communicating with the OMDBB API")
         }
-        console.log(availableMovies)
         return availableMovies 
     }
     catch (error) {

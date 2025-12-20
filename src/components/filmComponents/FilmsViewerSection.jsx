@@ -19,7 +19,7 @@ export default function FilmsViewerSection() {
         {/* <button>Add Movie</button> */}
       </header>
       {isFetching && <p className={classes.viewerSection__fetchPara}>Fetching films...</p>}
-      {!isFetching && <div className={classes.viewerSection__filmContent}>
+      {!isFetching && fetchedFilms.length > 0 && <div className={classes.viewerSection__filmContent}>
         {activeMovieList === "all" && fetchedFilms.map(film => {
           if (film === undefined) {
             console.error("Error loading some movies")
