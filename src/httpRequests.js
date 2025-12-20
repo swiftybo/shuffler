@@ -10,15 +10,24 @@ const OPTIONS = {
 export async function fetchFilms(movieList) {
     const availableMovies = await Promise.all(
         movieList.map(async movie => {
-            const response = await fetch(`http://www.omdbapi.com/?t=${movie.title}&apikey=6f14816c`);
+            try {
+                const response = await fetch(`http://www.omdbapi.com/?t=${movie.title}&apikey=6f14816c`);
+    
+                if (!response.ok) {
+                    throw new Error("Failed to fetch film");
+                }
+                
+                const movieInfo = await response.json()
 
-            if (!response.ok) {
-            throw new Error("Failed to fetch film");
+                if (movieInfo.Response === "False") {
+                    return
+                }
+    
+                return {...movieInfo, watchStatus: movie.watched};
             }
-            
-            const movieInfo = await response.json()
-
-            return {...movieInfo, watchStatus: movie.watched};
+            catch (error){
+                console.log(error.message)
+            }
         })
     )
     console.log(availableMovies)
