@@ -2,7 +2,7 @@ const filmList = [
   { title: "The Godfather", year: 1972, watched: false },
   { title: "12 Angry Men", year: 1957, watched: false },
   { title: "Attack on Titan", year: 2015, watched: false },
-  { title: "10 Cloverfield Lane", year: 2016, watched: false },
+  { title: "12 Cloverfield Lane", year: 2016, watched: false },
   { title: "Memento", year: 2000, watched: false },
   { title: "Shutter Island", year: 2010, watched: true },
   {
