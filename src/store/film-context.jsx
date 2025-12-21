@@ -9,6 +9,10 @@ export function FilmContextProvider({children}) {
     const [randomizerVisible, setRandomizerVisible] = useState(false)
     const [wildcardVisible, setWildcardVisible] = useState(false)
     const [filmsVisible, setFilmsVisible] = useState(false)
+
+    // State controlling whether the randomizer uses all movies or filters unwatched movies list
+    const [isRandomizingFilteredFilms, setIsRandomizingFilteredFilms] = useState(false)
+
     // STATE CONTROLLING FETCH STATUS OF MOVIE DATA
     // 1. Loading state: tell user that the app is currently fetching data
     const [isFetching, setIsFetching] = useState(false);
@@ -33,6 +37,10 @@ export function FilmContextProvider({children}) {
     
     function handleFilmVisibility() {
         setFilmsVisible(prevState => !prevState)
+    }
+
+    function handleRandomizerChoice() {
+      setIsRandomizingFilteredFilms(prevValue => !prevValue)
     }
     
     // USEEFFECT HOOK TO FETCH FILM DATA WHEN FILM PAGE OPENED
@@ -71,7 +79,7 @@ export function FilmContextProvider({children}) {
     }
 
     return (
-        <FilmContext.Provider value={{filmsVisible, wildcardVisible, randomizerVisible, isFetching, fetchedFilms, error, handleFilmVisibility, handleWildcardVisibility, handleRandomizerVisibility, toggleWatchStatus, watchedFilms, unwatchedFilms}}>
+        <FilmContext.Provider value={{filmsVisible, wildcardVisible, randomizerVisible, isRandomizingFilteredFilms, isFetching, fetchedFilms, error, handleFilmVisibility, handleWildcardVisibility, handleRandomizerVisibility, handleRandomizerChoice, toggleWatchStatus, watchedFilms, unwatchedFilms}}>
             {children}
         </FilmContext.Provider>
     )

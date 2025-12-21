@@ -1,10 +1,10 @@
 import filmLogo from "../../assets/film-logo.png"
-import classes from "./CategoryHeader.module.css"
+import classes from "./FilmHeader.module.css"
+import { useState } from "react"
 import { useFilmContext } from "../../store/film-context"
 
-// TODO: change this to FilmHeader as this is now tailored specifically for the filmPage
-export default function CategoryHeader() {
-    const {fetchedFilms, watchedFilms, unwatchedFilms, isFetching} = useFilmContext()
+export default function FilmHeader() {
+    const {isRandomizingFilteredFilms, handleRandomizerChoice, fetchedFilms, watchedFilms, unwatchedFilms, isFetching} = useFilmContext()
 
     return (
         <header className={classes.header}>
@@ -17,6 +17,7 @@ export default function CategoryHeader() {
                     <p className={classes.header__stat}><span style={{color: "green"}}>✔ </span>{watchedFilms.length} watched</p>
                     <p className={classes.header__stat}><span>👀</span>{unwatchedFilms.length} to watch</p>
                 </div>
+                <input type="checkbox" checked={isRandomizingFilteredFilms} onChange={handleRandomizerChoice}/><label className={classes.header__label}>Only randomize unwatched films</label>
             </>}
         </header>
     )
