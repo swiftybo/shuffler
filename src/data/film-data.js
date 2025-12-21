@@ -18,6 +18,18 @@ const filmList = [
   { title: "A Star is Born", year: 2018, watched: false },
   { title: "Your Name.", year: 2016, watched: false },
   { title: "The Witches of Eastwick", year: 1987, watched: false },
+  { title: "F1", year: 2025, watched: false},
+  { title: "Death Becomes Her", year: 1992, watched: false},
+  { title: "What a Way To Go!", year: 1964, watched: false},
+  { title: "Street Fighter", year: 1994, watched: false},
+  {title: "Finch", year: 2021, watched: false},
+  {title: "Karate Kid: Legends", year: 2025, watched: false},
+  {title: "In Time", year: 2011, watched: false},
+  {title: "The Man Who Knew Infinity", year: 2015, watched: true},
+  {title: "Gifted", year: 2017, watched: false},
+  {title: "Nim's Island", year: 2008, watched: false},
+  {title: "Mulan", year: 2020, watched: false},
+  {title: "Moneyball", year: 2011, watched: true},
 ];
 
 export default filmList
