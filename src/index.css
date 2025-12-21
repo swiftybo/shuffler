@@ -143,6 +143,15 @@ li a.active {
   text-align: center;
 }
 
+.menuItem__banner {
+  margin: 0 0 1rem;
+  padding: 0.25rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  background-color: red;
+  font-size: medium;
+}
+
 .menuItem__logo {
   width: 4rem;
   height: 4rem;
