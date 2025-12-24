@@ -23,7 +23,6 @@ const filmList = [
   { title: "What a Way To Go!", year: 1964, watched: false},
   { title: "Street Fighter", year: 1994, watched: false},
   {title: "Finch", year: 2021, watched: false},
-  {title: "Karate Kid: Legends", year: 2025, watched: false},
   {title: "In Time", year: 2011, watched: false},
   {title: "The Man Who Knew Infinity", year: 2015, watched: true},
   {title: "Gifted", year: 2017, watched: false},
