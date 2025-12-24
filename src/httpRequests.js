@@ -11,7 +11,7 @@ export async function fetchFilms(movieList) {
         const availableMovies = await Promise.all(
             movieList.map(async movie => {
                 try {
-                    const response = await fetch(`http://www.omdbapi.com/?t=${movie.title}&y=${movie.year}&apikey=6f14816c`);
+                    const response = await fetch(`https://www.omdbapi.com/?t=${movie.title}&y=${movie.year}&apikey=6f14816c`);
                     
                     if (!response.ok) {
                         throw new Error(`Failed to fetch film with title "${movie.title}"`);
