@@ -2,7 +2,7 @@ import ActionButtons from "../components/filmComponents/ActionButtons";
 import RandomizerSection from "../components/filmComponents/RandomizerSection";
 import FilmsViewerSection from "../components/filmComponents/FilmsViewerSection";
 import WildcardSection from "../components/filmComponents/WildcardSection";
-import FilmHeader from "../components/filmComponents/FilmHeader";
+import FilmHeader from "../components/filmComponents/FIlmHeader";
 import { useFilmContext } from "../store/film-context";
 
 
