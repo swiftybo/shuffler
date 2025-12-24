@@ -1,6 +1,6 @@
 import { useState, useActionState, useEffect } from "react"
 import { fetchFilmID, fetchRecommendedFilm } from "../../httpRequests.js"
-import classes from "./WildCardSection.module.css"
+import classes from "./WildcardSection.module.css"
 import infoIcon from "../../assets/information-icon.png"
 import FilmSelector from "./FilmSelector.jsx"
 const initialState = {userMovieTitle: "", userMovieYear: ""}
