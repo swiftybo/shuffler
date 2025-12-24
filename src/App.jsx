@@ -22,7 +22,9 @@ const router = createBrowserRouter([
       { path: "films", element: <FilmContextProvider><FilmPage /></FilmContextProvider> },
     ],
   },
-]);
+],
+  {basename: "/shuffler"}
+);
 
 function App() {
   // const [selectedCategory, setSelectedCategory] = useState("");
