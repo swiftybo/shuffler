@@ -1,4 +1,4 @@
-# Project Title: Shuffler
+# Shuffler
 
 ## 🚀 Overview
 A web application built with React & CSS aimed at helping my friends and I quickly make decisions on "Movies To Watch", "Activities To Do", "Restaurants To Go" & "Recipes To Eat". Currently the only topic that is finished is the "Movie Shuffler"; other randomisers are in progress and will have their own features for example:
